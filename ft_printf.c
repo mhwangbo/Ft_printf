@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/17 17:01:11 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/17 19:22:47 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,24 @@ int		ft_vsprintf(char *buf, const char *format, va_list args)
 			if (format[i] == 'c' || format[i] == 'C')
 			{
 				format += k;
-				printf("ft_vsprintf: before: format = %s\n", format);
 				i = ft_character(buf, args, &j, format) + 1;
 				format += i;
-				printf("ft_vsprintf: j [%d]\n", j);
-				printf("ft_vsprintf: after: format = %s\n", format);
 				i = 0;
 			}
-			else if (format[i] == '%')
+			else if (format[i] == 's' || format[i] == 'S')
 			{
-				buf[j++] = '%';
-				format += 1;
-				i++;
+				format += k;
+				i = ft_string(buf, args, &j, format) + 1;
+				format += i;
+				i = 0;
 			}
+			else if (format[i++] == '%')
+				buf[j++] = '%';
 		}
 		if (format[i] != '%')
-		{
-			buf[j++] = format[i];
-			i++;
-		}
-
-		printf("ft_vsprintf: buff = %s\n", buf);
+			buf[j++] = format[i++];
 	}
+	buf[j] = '\0';
 	return (0);
 }
 
@@ -70,7 +66,7 @@ int		ft_printf(const char *format, ...)
 	va_start(args, format);
 	i = ft_vsprintf(buf, format, args);
 	va_end(args);
-	printf("%s\n", buf);
+	ft_putstr(buf);
 	free(buf);
 	return (i);
 }

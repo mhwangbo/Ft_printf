@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 13:57:30 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/17 17:13:27 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/17 17:23:06 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int		ft_width(const char *format, t_flag *flags, va_list args, int **form)
 	char	*width;
 	int		i;
 
-	printf("ft_width\n");
 	width = ft_memalloc(256);
 	i = 0;
 	if (format[**form] == '*')

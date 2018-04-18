@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 15:41:28 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/17 14:20:04 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/17 17:17:58 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int		main()
 {
 	const char	*format;
 
-	ft_printf("abcd%c %c\n", 'a', 'b');
+	ft_printf("%11c  %-7c%%\n", 't', 'y');
+	printf("a\n");
+	printf("%11c  %-7c%%\n", 't', 'y');
 	
 	return (0);
 }

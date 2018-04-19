@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 17:50:38 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/17 19:22:28 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/18 21:01:03 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,31 @@
 
 int		ft_string(char *buf, va_list args, int *j, const char *format)
 {
-	char	*str;
-	char	*front;
-	char	*back;
-	char	*tmp;
 	t_flag	flags;
 	int		form;
 	int		i;
+	t_chars	*chars;
 
 	form = 0;
 	i = -1;
-	front = ft_memalloc(256);
-	back = ft_memalloc(256);
-	tmp = ft_memalloc(256);
+	chars = ft_chars_malloc();
+/*	chars = ft_memalloc(sizeof(t_chars) * 1);
+	chars->front = ft_memalloc(256);
+	chars->back = ft_memalloc(256);
+	chars->str = ft_memalloc(256);
+	chars->tmp = ft_memalloc(256); */
 	flags = ft_flags(format, 2, args, &form);
-	str = va_arg(args, char*);
-	ft_flag_app(flags, front, back, str);
+	chars->str = va_arg(args, char*);
+	ft_flag_app(flags, chars->front, chars->back, chars->str);
 	if (flags.precision > 0)
 	{
 		while (++i < flags.precision)
-			tmp[i] = str[i];
+			chars->tmp[i] = chars->str[i];
 	}
-	str = ft_strjoin(front, tmp);
-	str = ft_strjoin(str, back);
-	while (*str != '\0')
-	{
-		buf[*j] = *str;
-		str++;
-		*j += 1;
-	}
-	free(front);
-	free(back);
+	else
+		chars->tmp = chars->str;
+	chars->str = ft_strjoin(chars->front, chars->tmp);
+	chars->str = ft_strjoin(chars->str, chars->back);
+	ft_str_to_buf(chars->str, buf, &j);
 	return (form);
 }

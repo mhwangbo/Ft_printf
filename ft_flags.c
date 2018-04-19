@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 19:03:23 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/18 19:19:19 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/18 20:29:42 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void		ft_flag_app(t_flag flags, char *front, char *back, char *str)
 	}
 	if (flags.precision > 0 && flags.width > 0 && flags.spec == 2)
 		len = flags.precision;
-	if ((flags.plus == 1 && flags.spec == 3) || (flags.hash == 1 && flags.spec == 4))
+	if ((flags.plus == 1 && flags.spec == 3) ||
+			(flags.hash == 1 && flags.spec == 4))
 	{
 		if (str[0] != '-')
 			len++;

@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 13:57:30 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/17 20:01:13 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/18 20:47:00 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		ft_width(const char *format, t_flag *flags, va_list args, int **form)
 	}
 	flags->width = ft_atoi(width);
 	free(width);
-	**form -=1;
+	**form -= 1;
 	return (2);
 }
 

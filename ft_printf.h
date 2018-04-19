@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/18 19:33:48 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/18 21:00:45 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ typedef struct	s_flag
 	int			precision;
 }				t_flag;
 
+typedef struct	s_chars
+{
+	char		*front;
+	char		*back;
+	char		*str;
+	char		*tmp;
+}				t_chars;
+
 int				ft_printf(const char *format, ...);
 int				ft_vsprintf(char *buf, const char *format, va_list args);
 
@@ -45,4 +53,7 @@ int				ft_decimal(char *buf, va_list args, int *j, const char *format);
 int				ft_octal(char *buf, va_list args, int *j, const char *format);
 int				ft_unsigned_d(char *buf, va_list args, int *j, const char *format);
 int				ft_hexa(char *buf, va_list args, int *j, const char *format);
+
+void			ft_str_to_buf(char *str, char *buf, int **j);
+t_chars			*ft_chars_malloc(void);
 #endif

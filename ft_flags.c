@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 19:03:23 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/17 18:52:35 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/18 19:19:19 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,17 @@ void		ft_flag_app(t_flag flags, char *front, char *back, char *str)
 		}
 		while (str[i] == '0')
 			i++;
-		str = ft_strdup(str + 3);
+		str = ft_strdup(str + i);
 	}
 	if (flags.precision > 0 && flags.width > 0 && flags.spec == 2)
 		len = flags.precision;
+	if ((flags.plus == 1 && flags.spec == 3) || (flags.hash == 1 && flags.spec == 4))
+	{
+		if (str[0] != '-')
+			len++;
+		else if (flags.spec == 4)
+			len++;
+	}
 	while (flags.width > len)
 	{
 		if (flags.minus == 1)
@@ -52,11 +59,14 @@ void		ft_flag_app(t_flag flags, char *front, char *back, char *str)
 		}
 		flags.width--;
 	}
+	if (flags.hash == 1)
+	{
+		if (flags.spec == 4)
+			front[f++] = '0';
+	}
 	if (flags.plus == 1 && flags.spec == 3)
 	{
-		if (sign == 1)
-			front[f++] = '-';
-		else
+		if (str[0] != '-')
 			front[f++] = '+';
 	}
 	else if (flags.space == 1 && flags.spec == 3)

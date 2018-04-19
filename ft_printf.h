@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/17 19:12:38 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/18 19:33:48 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,8 @@ void			ft_flag_app(t_flag flags, char *front, char *back, char *str);
 
 int				ft_character(char *buf, va_list args, int *j, const char *format);
 int				ft_string(char *buf, va_list args, int *j, const char *format);
+int				ft_decimal(char *buf, va_list args, int *j, const char *format);
+int				ft_octal(char *buf, va_list args, int *j, const char *format);
+int				ft_unsigned_d(char *buf, va_list args, int *j, const char *format);
+int				ft_hexa(char *buf, va_list args, int *j, const char *format);
 #endif

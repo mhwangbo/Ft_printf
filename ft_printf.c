@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/17 19:22:47 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/18 19:33:28 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,34 @@ int		ft_vsprintf(char *buf, const char *format, va_list args)
 			{
 				format += k;
 				i = ft_string(buf, args, &j, format) + 1;
+				format += i;
+				i = 0;
+			}
+			else if (format[i] == 'd' || format[i] == 'D' || format[i] == 'i')
+			{
+				format += k;
+				i = ft_decimal(buf, args, &j, format);
+				format += i;
+				i = 0;
+			}
+			else if (format[i] == 'o' || format[i] == 'O')
+			{
+				format += k;
+				i = ft_octal(buf, args, &j, format);
+				format += i;
+				i = 0;
+			}
+			else if (format[i] == 'u' || format[i] == 'U')
+			{
+				format += k;
+				i = ft_unsigned_d(buf, args, &j, format);
+				format += i;
+				i = 0;
+			}
+			else if (format[i] == 'x' || format[i] == 'X')
+			{
+				format += k;
+				i = ft_hexa(buf, args, &j, format);
 				format += i;
 				i = 0;
 			}

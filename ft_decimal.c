@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_character.c                                     :+:      :+:    :+:   */
+/*   ft_decimal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/15 18:11:21 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/18 16:15:37 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/04/17 19:28:59 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/04/18 19:10:10 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_character(char *buf, va_list args, int *j, const char *format)
+int		ft_decimal(char *buf, va_list args, int *j, const char *format)
 {
 	char	*str;
 	char	*front;
@@ -20,12 +20,12 @@ int		ft_character(char *buf, va_list args, int *j, const char *format)
 	t_flag	flags;
 	int		form;
 
-	form = 0;
 	front = ft_memalloc(256);
 	back = ft_memalloc(256);
-	str = ft_memalloc(256);
-	flags = ft_flags(format, 1, args, &form);
-	str[0] = va_arg(args, int);
+	form = va_arg(args, int);
+	str = ft_itoa(form);
+	form = 0;
+	flags = ft_flags(format, 3, args, &form);
 	ft_flag_app(flags, front, back, str);
 	str = ft_strjoin(front, str);
 	str = ft_strjoin(str, back);
@@ -37,5 +37,5 @@ int		ft_character(char *buf, va_list args, int *j, const char *format)
 	}
 	free(front);
 	free(back);
-	return (form);
+	return (form + 1);
 }

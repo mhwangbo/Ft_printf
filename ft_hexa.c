@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_character.c                                     :+:      :+:    :+:   */
+/*   ft_hexa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/15 18:11:21 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/18 16:15:37 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/04/18 19:11:49 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/04/18 19:39:20 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_character(char *buf, va_list args, int *j, const char *format)
+int		ft_hexa(char *buf, va_list args, int *j, const char *format)
 {
-	char	*str;
-	char	*front;
-	char	*back;
-	t_flag	flags;
-	int		form;
+	char			*str;
+	char			*front;
+	char			*back;
+	t_flag			flags;
+	unsigned int	form;
 
-	form = 0;
 	front = ft_memalloc(256);
 	back = ft_memalloc(256);
-	str = ft_memalloc(256);
-	flags = ft_flags(format, 1, args, &form);
-	str[0] = va_arg(args, int);
+	form = va_arg(args, unsigned int);
+	str = ft_uitoa_base(form, 16);
+	form = 0;
+	flags = ft_flags(format, 6, args, (int*)&form);
 	ft_flag_app(flags, front, back, str);
 	str = ft_strjoin(front, str);
 	str = ft_strjoin(str, back);
@@ -37,5 +37,5 @@ int		ft_character(char *buf, va_list args, int *j, const char *format)
 	}
 	free(front);
 	free(back);
-	return (form);
+	return (form + 1);
 }

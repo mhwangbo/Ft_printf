@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:30:37 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/18 21:00:33 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/18 21:56:53 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,24 @@ t_chars		*ft_chars_malloc(void)
 	return (chars);
 }
 
-void		ft_str_to_buf(char *str, char *buf, int **j)
+void		ft_str_to_buf(t_chars *chars, char *buf, int **j, int s)
 {
 	int	i;
 
 	i = -1;
-	while (str[++i] != '\0')
+	if (s == 2)
 	{
-		buf[**j] = str[i];
+		chars->str = ft_strjoin(chars->front, chars->tmp);
+		chars->str = ft_strjoin(chars->str, chars->back);
+	}
+	else
+	{
+		chars->str = ft_strjoin(chars->front, chars->str);
+		chars->str = ft_strjoin(chars->str, chars->back);
+	}
+	while (chars->str[++i] != '\0')
+	{
+		buf[**j] = chars->str[i];
 		**j += 1;
 	}
 }

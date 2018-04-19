@@ -6,19 +6,35 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/18 19:33:28 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/19 15:11:13 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+int		(*g_diff_type[5])(char *buf, va_list args, int *j, const char
+		*format) = {ft_character, ft_string, ft_decimal, ft_unsigned};
+
+int		ft_vsprintf_s(const char *format, int i)
+{
+	if (format[i] == 'c' || format[i] == 'C')
+		return (0);
+	else if (format[i] == 's' || format[i] == 'S')
+		return (1);
+	else if (format[i] == 'd' || format[i] == 'D' || format[i] == 'i')
+		return (2);
+	else if (format[i] == 'o' || format[i] == 'O' || format[i] == 'u' ||
+			format[i] == 'U' || format[i] == 'x' || format[i] == 'X')
+		return (3);
+	return (-1);
+}
+
 int		ft_vsprintf(char *buf, const char *format, va_list args)
 {
-	int		fo_len;
 	int		i;
 	int		j;
 	int		k;
-	char	*flag;
+	int		spec;
 
 	i = 0;
 	j = 0;
@@ -26,49 +42,14 @@ int		ft_vsprintf(char *buf, const char *format, va_list args)
 	{
 		if (format[i] == '%')
 		{
-			k = i;
-			i++;
+			k = i++;
 			while (!ft_strchr("sSpdDioOuUxXcC%", format[i]))
 				i++;
-			if (format[i] == 'c' || format[i] == 'C')
+			if (ft_strchr("sSpdDioOuUxXcC", format[i]))
 			{
+				spec = ft_vsprintf_s(format, i);
 				format += k;
-				i = ft_character(buf, args, &j, format) + 1;
-				format += i;
-				i = 0;
-			}
-			else if (format[i] == 's' || format[i] == 'S')
-			{
-				format += k;
-				i = ft_string(buf, args, &j, format) + 1;
-				format += i;
-				i = 0;
-			}
-			else if (format[i] == 'd' || format[i] == 'D' || format[i] == 'i')
-			{
-				format += k;
-				i = ft_decimal(buf, args, &j, format);
-				format += i;
-				i = 0;
-			}
-			else if (format[i] == 'o' || format[i] == 'O')
-			{
-				format += k;
-				i = ft_octal(buf, args, &j, format);
-				format += i;
-				i = 0;
-			}
-			else if (format[i] == 'u' || format[i] == 'U')
-			{
-				format += k;
-				i = ft_unsigned_d(buf, args, &j, format);
-				format += i;
-				i = 0;
-			}
-			else if (format[i] == 'x' || format[i] == 'X')
-			{
-				format += k;
-				i = ft_hexa(buf, args, &j, format);
+				i = g_diff_type[spec](buf, args, &j, format);
 				format += i;
 				i = 0;
 			}

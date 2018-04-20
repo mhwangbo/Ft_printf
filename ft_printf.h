@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/19 15:13:23 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/19 19:46:11 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ typedef struct	s_numbers
 }				t_numbers;
 
 int				ft_printf(const char *format, ...);
-int				ft_vsprintf(char *buf, const char *format, va_list args);
+int				ft_vsprintf(char *buf, const char *format, va_list args,
+		t_numbers n);
+int				ft_vsprintf_s(const char *format, int i);
 
 t_flag			ft_flags(const char *format, int s, va_list args, int *form);
 int				ft_flag(const char format, t_flag *flags);
@@ -53,9 +55,13 @@ int				ft_width(const char *format, t_flag *flags, va_list args,
 		int **form);
 int				ft_precision(const char *format, t_flag *flags,
 		va_list args, int **form);
-int				ft_length(const char *format, t_flag *flags, int **form);
+int				ft_length(const char *format);
 
 void			ft_flag_app(t_flag flags, t_chars *chars);
+void			ft_hash_a(t_flag *flags, t_chars *chars, int *i, int *sign);
+void			ft_plus_a(t_flag flags, t_chars *chars, int *len);
+void			ft_width_a(t_flag *flags, t_chars *chars, int *b, int *f);
+void			ft_precision_a(t_flag *flags, t_chars *chars, int *len);
 
 int				ft_character(char *buf, va_list args, int *j,
 		const char *format);
@@ -64,6 +70,8 @@ int				ft_decimal(char *buf, va_list args, int *j, const char *format);
 int				ft_unsigned(char *buf, va_list args, int *j,
 		const char *format);
 int				ft_unsigned_s(const char *format);
+void			ft_to_capital(t_chars *chars, const char *format);
+int				ft_pointer(char *buf, va_list args, int *j, const char *format);
 
 void			ft_str_to_buf(t_chars *chars, char *buf, int **j, int s);
 t_chars			*ft_chars_malloc(void);

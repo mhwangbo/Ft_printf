@@ -6,14 +6,22 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/19 15:11:13 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/19 21:04:35 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+** 0 = int converted to unsigned char
+** 1 = char *
+** 2 = signed decimal
+** 3 = unsigned octal, unsigned decimal, unsigned hexadecimal (x & X)
+*/
+
 int		(*g_diff_type[5])(char *buf, va_list args, int *j, const char
-		*format) = {ft_character, ft_string, ft_decimal, ft_unsigned};
+		*format) = {ft_character, ft_string, ft_decimal, ft_unsigned,
+	ft_pointer};
 
 int		ft_vsprintf_s(const char *format, int i)
 {
@@ -26,40 +34,36 @@ int		ft_vsprintf_s(const char *format, int i)
 	else if (format[i] == 'o' || format[i] == 'O' || format[i] == 'u' ||
 			format[i] == 'U' || format[i] == 'x' || format[i] == 'X')
 		return (3);
+	else if (format[i] == 'p')
+		return (4);
 	return (-1);
 }
 
-int		ft_vsprintf(char *buf, const char *format, va_list args)
+int		ft_vsprintf(char *buf, const char *format, va_list args, t_numbers n)
 {
-	int		i;
-	int		j;
-	int		k;
-	int		spec;
-
-	i = 0;
-	j = 0;
-	while (format[i] != '\0')
+	ft_bzero(&n, sizeof(t_numbers));
+	while (format[n.i] != '\0')
 	{
-		if (format[i] == '%')
+		if (format[n.i] == '%')
 		{
-			k = i++;
-			while (!ft_strchr("sSpdDioOuUxXcC%", format[i]))
-				i++;
-			if (ft_strchr("sSpdDioOuUxXcC", format[i]))
+			n.k = n.i++;
+			while (!ft_strchr("sSpdDioOuUxXcC%", format[n.i]))
+				n.i++;
+			if (ft_strchr("sSpdDioOuUxXcC", format[n.i]))
 			{
-				spec = ft_vsprintf_s(format, i);
-				format += k;
-				i = g_diff_type[spec](buf, args, &j, format);
-				format += i;
-				i = 0;
+				n.spec = ft_vsprintf_s(format, n.i);
+				format += n.k;
+				n.i = g_diff_type[n.spec](buf, args, &n.j, format);
+				format += n.i;
+				n.i = 0;
 			}
-			else if (format[i++] == '%')
-				buf[j++] = '%';
+			else if (format[n.i++] == '%')
+				buf[n.j++] = '%';
 		}
-		if (format[i] != '%')
-			buf[j++] = format[i++];
+		if (format[n.i] != '%')
+			buf[n.j++] = format[n.i++];
 	}
-	buf[j] = '\0';
+	buf[n.j] = '\0';
 	return (0);
 }
 
@@ -69,11 +73,12 @@ int		ft_printf(const char *format, ...)
 	int			i;
 	char		*buf;
 	int			k;
+	t_numbers	n;
 
 	k = -1;
 	buf = ft_memalloc(256);
 	va_start(args, format);
-	i = ft_vsprintf(buf, format, args);
+	i = ft_vsprintf(buf, format, args, n);
 	va_end(args);
 	ft_putstr(buf);
 	free(buf);

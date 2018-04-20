@@ -6,38 +6,60 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 13:57:30 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/18 20:47:00 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/19 21:01:53 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_length(const char *format, t_flag *flags, int **form)
+int		ft_length(const char *format)
 {
-	return (4);
+	int		i;
+
+	i = 0;
+	while (!ft_strchr("hljzCSDOU", format[i]))
+		i++;
+	if (format[i] == 'h')
+	{
+		if (format[i + 1] == 'h')
+			return (0); //convert to char
+		return (1); // convert to short
+	}
+	else if (format[i] == 'l' || format[i] == 'C' || format[i] == 'S' ||
+			format[i] == 'D' || format[i] == 'O' || format[i] == 'U')
+	{
+		if (format[i + 1] == 'l')
+			return (2); //convert to long long
+		return (3); //convert to long
+	}
+	else if (format[i] == 'j')
+		return (4); // convert to intmax_t
+	else if (format[i] == 'z')
+		return (5); // convert to size_t
+	return (6);
 }
 
-int		ft_precision(const char *format, t_flag *flags, va_list args, int **form)
+int		ft_precision(const char *format, t_flag *flags, va_list args, int **f)
 {
 	char	*precision;
 	int		i;
 
 	precision = ft_memalloc(256);
 	i = 0;
-	**form += 1;
-	if (format[**form] == '*')
+	**f += 1;
+	if (format[**f] == '*')
 	{
 		flags->precision = va_arg(args, int);
 		return (3);
 	}
-	while (format[**form] >= '0' && format[**form] <= '9')
+	while (format[**f] >= '0' && format[**f] <= '9')
 	{
-		precision[i++] = format[**form];
-		**form += 1;
+		precision[i++] = format[**f];
+		**f += 1;
 	}
 	flags->precision = ft_atoi(precision);
 	free(precision);
-	**form -= 1;
+	**f -= 1;
 	return (3);
 }
 

@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/04/23 15:04:35 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/04/23 15:10:33 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,12 @@ LIBFILES = ft_itoa.c\
 		   ft_strchr.c\
 		   ft_atoi.c\
 		   ft_uitoa_base.c\
-		   ft_putstr.c
+		   ft_putstr.c\
+		   ft_integerlen.c\
+		   ft_memset.c\
+		   ft_strnew.c\
+		   ft_iswhite.c\
+		   ft_putchar.c
 
 .PHONY = all clean fclean re
 

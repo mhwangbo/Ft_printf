@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 18:17:53 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/18 19:09:00 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 15:44:45 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,7 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void			ft_swapchar(char *p1, char *p2);
 void			ft_swapbyte(void *p1, void *p2);
 char			*ft_uitoa_base(unsigned int n, int base);
+char			*ft_llitoa_base(unsigned long long n, int base);
+char			ft_llintegerlen(unsigned long long n);
 
 #endif

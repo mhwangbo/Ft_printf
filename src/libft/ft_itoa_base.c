@@ -6,13 +6,13 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 15:46:00 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/19 20:32:55 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 16:54:49 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa_base(int n, int base)
+char	*ft_itoa_base(long long n, int base)
 {
 	size_t	i;
 	size_t	len;

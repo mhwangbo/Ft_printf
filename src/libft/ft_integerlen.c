@@ -6,13 +6,13 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 16:31:27 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/03/09 23:10:18 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 16:53:40 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_integerlen(int n)
+size_t		ft_integerlen(long long n)
 {
 	size_t	l;
 

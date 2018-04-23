@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 18:17:53 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 15:44:45 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 15:48:16 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,6 @@ void			ft_swapchar(char *p1, char *p2);
 void			ft_swapbyte(void *p1, void *p2);
 char			*ft_uitoa_base(unsigned int n, int base);
 char			*ft_llitoa_base(unsigned long long n, int base);
-char			ft_llintegerlen(unsigned long long n);
+size_t			ft_llintegerlen(unsigned long long n);
 
 #endif

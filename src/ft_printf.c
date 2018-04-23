@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 14:42:11 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 15:04:03 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int		ft_vsprintf(char *buf, const char *format, va_list args, t_numbers n)
 			{
 				n.spec = ft_vsprintf_s(format, n.i);
 				format += n.k;
-//				n.i = g_diff_type[n.spec](buf, args, &n.j, format);
 				n.i = ft_printf_send(buf, args, &n, format);
 				format += n.i;
 				n.i = 0;

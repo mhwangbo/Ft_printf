@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 15:49:55 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 16:11:08 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int		ft_printf(const char *format, ...)
 	ft_bzero(&n, sizeof(t_numbers));
 	buf = ft_memalloc(256);
 	va_start(args, format);
-	printf("INPUT: %s\n", format);
 	i = ft_vsprintf(buf, format, args, n);
 	va_end(args);
 	ft_putstr(buf);

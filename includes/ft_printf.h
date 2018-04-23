@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 16:15:31 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 16:58:46 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int				ft_unsigned_s(const char *format);
 void			ft_to_capital(t_chars *chars, const char *format);
 int				ft_pointer(char *buf, va_list args, int *j, const char *format);
 
-int				ft_d_cv(t_flag flags, va_list args);
+long long			ft_d_cv(t_flag flags, va_list args);
 unsigned long long	ft_un_cv(t_flag flags, va_list args);
 
 void			ft_str_to_buf(t_chars *chars, char *buf, int **j, int s);

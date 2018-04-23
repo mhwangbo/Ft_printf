@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_octal.c                                         :+:      :+:    :+:   */
+/*   ft_unsigned.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/18 14:55:15 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/19 20:39:17 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/04/23 14:32:55 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		ft_unsigned_s(const char *format)
 	int		base;
 
 	i = -1;
+	base = 0;
 	while (!(ft_strchr("oOuUxX", format[i])))
 		i++;
 	if (format[i] == 'o' || format[i] == 'O')
@@ -50,17 +51,19 @@ int		ft_unsigned_s(const char *format)
 int		ft_unsigned(char *buf, va_list args, int *j, const char *format)
 {
 	t_flag			flags;
-	unsigned int	form;
+	int				form;
 	t_chars			*chars;
 	int				base;
+	unsigned		i;
 
-	chars = ft_chars_malloc();
-	form = va_arg(args, unsigned int);
-	base = ft_unsigned_s(format);
-	chars->str = ft_uitoa_base(form, base);
-	ft_to_capital(chars, format);
 	form = 0;
-	flags = ft_flags(format, 4, args, (int*)&form);
+	flags = ft_flags(format, 4, args, &form);
+	chars = ft_chars_malloc();
+	i = ft_un_cv(flags, args);
+	base = ft_unsigned_s(format);
+	chars->str = ft_uitoa_base(i, base);
+	printf("str [%s]\n", chars->str);
+	ft_to_capital(chars, format);
 	ft_flag_app(flags, chars);
 	ft_str_to_buf(chars, buf, &j, 4);
 	return (form + 1);

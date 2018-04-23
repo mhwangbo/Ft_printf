@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/19 21:04:35 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 14:42:11 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,24 @@
 ** 3 = unsigned octal, unsigned decimal, unsigned hexadecimal (x & X)
 */
 
-int		(*g_diff_type[5])(char *buf, va_list args, int *j, const char
-		*format) = {ft_character, ft_string, ft_decimal, ft_unsigned,
-	ft_pointer};
+//int		(*g_diff_type[5])(char *buf, va_list args, int *j, const char
+//		*format) = {ft_character, ft_string, ft_decimal, ft_unsigned,
+//	ft_pointer};
+
+int		ft_printf_send(char *buf, va_list args, t_numbers *n, const char *format)
+{
+	if (n->spec == 0)
+		return (ft_character(buf, args, &n->j, format));
+	else if (n->spec == 1)
+		return (ft_string(buf, args, &n->j, format));
+	else if (n->spec == 2)
+		return (ft_decimal(buf, args, &n->j, format));
+	else if (n->spec == 3)
+		return (ft_unsigned(buf, args, &n->j, format));
+	else if (n->spec == 4)
+		return (ft_pointer(buf, args, &n->j, format));
+	return (-1);
+}
 
 int		ft_vsprintf_s(const char *format, int i)
 {
@@ -39,6 +54,7 @@ int		ft_vsprintf_s(const char *format, int i)
 	return (-1);
 }
 
+
 int		ft_vsprintf(char *buf, const char *format, va_list args, t_numbers n)
 {
 	ft_bzero(&n, sizeof(t_numbers));
@@ -53,7 +69,8 @@ int		ft_vsprintf(char *buf, const char *format, va_list args, t_numbers n)
 			{
 				n.spec = ft_vsprintf_s(format, n.i);
 				format += n.k;
-				n.i = g_diff_type[n.spec](buf, args, &n.j, format);
+//				n.i = g_diff_type[n.spec](buf, args, &n.j, format);
+				n.i = ft_printf_send(buf, args, &n, format);
 				format += n.i;
 				n.i = 0;
 			}
@@ -76,6 +93,7 @@ int		ft_printf(const char *format, ...)
 	t_numbers	n;
 
 	k = -1;
+	ft_bzero(&n, sizeof(t_numbers));
 	buf = ft_memalloc(256);
 	va_start(args, format);
 	i = ft_vsprintf(buf, format, args, n);

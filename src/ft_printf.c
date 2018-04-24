@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 16:11:08 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:27:47 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 ** 2 = signed decimal
 ** 3 = unsigned octal, unsigned decimal, unsigned hexadecimal (x & X)
 */
-
-//int		(*g_diff_type[5])(char *buf, va_list args, int *j, const char
-//		*format) = {ft_character, ft_string, ft_decimal, ft_unsigned,
-//	ft_pointer};
 
 int		ft_printf_send(char *buf, va_list args, t_numbers *n, const char *format)
 {

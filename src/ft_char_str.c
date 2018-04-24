@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 18:11:21 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 18:50:02 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 20:17:23 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		ft_character(va_list args, const char *format)
 	chars = ft_chars_malloc();
 	flags = ft_flags(format, 1, args, &form);
 	if (flags.length == 4)
-		chars->str[0] = va_arg(args, long);
+		return (ft_wide_char(args, form, flags));
 	else
 		chars->str[0] = va_arg(args, int);
 	ft_flag_app(flags, chars);
@@ -40,13 +40,13 @@ int		ft_string(va_list args, const char *format)
 	form = 0;
 	i = -1;
 	flags = ft_flags(format, 2, args, &form);
-//	if (flags.length == 4)
-//		return(ft_wide_str(args, &j, format));
-//	else
-//	{
+	if (flags.length == 4)
+		return(ft_wide_str(args, form, flags));
+	else
+	{
 		chars = ft_chars_malloc();
 		chars->str = va_arg(args, char*);
-//	}
+	}
 	ft_flag_app(flags, chars);
 	if (flags.precision > 0)
 		while (++i < flags.precision)

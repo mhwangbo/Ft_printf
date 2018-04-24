@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/04/23 15:47:11 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/04/23 20:08:57 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ FILES = ft_printf.c\
 		ft_flags_detail.c\
 		ft_length.c\
 		ft_pointer.c\
-		ft_unsigned.c
+		ft_unsigned.c\
+		ft_wide_char.c
 
 LIBFILES = ft_itoa.c\
 		   ft_memalloc.c\

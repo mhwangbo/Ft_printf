@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 19:06:19 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 15:03:16 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 16:00:10 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_llitoa_base(unsigned long long n, int base)
 	aba = ft_memalloc(37);
 	ft_llitoa_base_s(aba);
 	i = 0;
-	len = ft_llintegerlen(n);
+	len = ft_llintegerlen(n, base);
 	str = ft_memalloc(len + 1);
 	if (ft_check_intmax(n, base))
 		return (ft_check_intmax(n, base));

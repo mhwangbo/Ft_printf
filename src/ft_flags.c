@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 19:03:23 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 15:21:29 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:55:59 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ void		ft_flag_app(t_flag fl, t_chars *chars)
 	ft_precision_a(&fl, chars, &len);
 	if ((fl.plus == 1 && fl.spec == 3) || (fl.hash == 1 && fl.spec == 4))
 		ft_plus_a(fl, chars, &len);
-	while (fl.width > len)
+	if ((fl.plus == 1 && fl.spec == 3) && chars->str[0] != '-' && fl.zero == 1)
+		chars->front[f++] = '+';
+	while (fl.width > len && fl.width > fl.precision)
 		ft_width_a(&fl, chars, &b, &f);
 	ft_flags_app_s(fl, chars, &f);
-	if ((fl.plus == 1 && fl.spec == 3) && chars->str[0] != '-')
+	if ((fl.plus == 1 && fl.spec == 3) && chars->str[0] != '-' && fl.zero == 0)
 		chars->front[f++] = '+';
 	else if (fl.space == 1 && fl.spec == 3 && sign == 0)
 		chars->front[f++] = ' ';

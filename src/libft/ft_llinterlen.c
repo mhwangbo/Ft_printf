@@ -6,22 +6,20 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 16:31:27 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 17:08:29 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:59:20 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_llintegerlen(unsigned long long n)
+size_t		ft_llintegerlen(unsigned long long n, int base)
 {
 	size_t	l;
 
 	l = 0;
-	if (n == 0)
-		return (1);
 	while (n)
 	{
-		n = n / 10;
+		n /= base;
 		l++;
 	}
 	return (l);

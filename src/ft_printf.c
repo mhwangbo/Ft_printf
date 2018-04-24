@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 00:07:00 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:24:31 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int		ft_vsprintf_s(const char *format, int i)
 	return (-1);
 }
 
-
 int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
 {
 	ft_bzero(n, sizeof(t_numbers));
@@ -74,11 +73,11 @@ int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
 				n->i = 0;
 			}
 		}
-			if (format[n->i] != '%' && format[n->i] != '\0')
-			{
-				n->return_i += write(1, &format[n->i], 1);
-				n->i += 1;
-			}
+		if (format[n->i] != '%' && format[n->i] != '\0')
+		{
+			n->return_i += write(1, &format[n->i], 1);
+			n->i += 1;
+		}
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 13:57:30 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 00:24:10 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:22:19 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ int		ft_length(const char *format, t_flag *flags, int **i)
 	if (format[**i] == 'h')
 	{
 		if (format[**i + 1] == 'h')
-			flags->length = 1; //convert to char
+			flags->length = 1;
 		else
-			flags->length = 2;; // convert to short
+			flags->length = 2;
 	}
 	else if (format[**i] == 'l' || format[**i] == 'C' || format[**i] == 'S' ||
 			format[**i] == 'D' || format[**i] == 'O' || format[**i] == 'U')
 	{
 		if (format[**i + 1] == 'l')
-			flags->length = 3; //convert to long long
+			flags->length = 3;
 		else
-			flags->length = 4; //convert to long
+			flags->length = 4;
 	}
 	else if (format[**i] == 'j')
-		flags->length = 5; // convert to intmax_t
+		flags->length = 5;
 	else if (format[**i] == 'z')
-		flags->length = 6; // convert to size_t
+		flags->length = 6;
 	if (flags->length == 1 || flags->length == 3)
 		**i += 1;
 	return (4);

@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 14:38:42 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:22:41 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int		ft_unsigned_s(const char *format)
 
 int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 {
-	t_flag			flags;
-	int				form;
-	t_chars			*chars;
+	t_flag				flags;
+	int					form;
+	t_chars				*chars;
 	unsigned long long	i;
 
 	form = 0;
@@ -71,10 +71,7 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 		flags.hash = 0;
 	}
 	else
-	{
-		printf("INPUT: %llu\n", i);
 		chars->str = ft_llitoa_base(i, flags.base);
-	}
 	ft_flag_app(flags, chars);
 	ft_to_capital(chars, format);
 	ft_str_to_buf(chars, 4, n);

@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 00:10:14 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 20:38:42 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:06:33 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,29 @@
 long long				ft_d_cv(t_flag flags, va_list args)
 {
 	if (flags.length == 0 || flags.length == 1 || flags.length == 2)
-		return(va_arg(args, int));
+		return (va_arg(args, int));
 	else if (flags.length == 3)
-		return(va_arg(args, long));
+		return (va_arg(args, long));
 	else if (flags.length == 4)
-		return(va_arg(args, long long));
+		return (va_arg(args, long long));
 	else if (flags.length == 5)
-		return(va_arg(args, intmax_t));
+		return (va_arg(args, intmax_t));
 	else if (flags.length == 6)
-		return(va_arg(args, size_t));
+		return (va_arg(args, size_t));
 	return (0);
 }
 
 unsigned long long		ft_un_cv(t_flag flags, va_list args)
 {
 	if (flags.length == 0 || flags.length == 1 || flags.length == 2)
-		return(va_arg(args, unsigned int));
+		return (va_arg(args, unsigned int));
 	else if (flags.length == 3)
-		return(va_arg(args, unsigned long));
+		return (va_arg(args, unsigned long));
 	else if (flags.length == 4)
-		return(va_arg(args, unsigned long long));
+		return (va_arg(args, unsigned long long));
 	else if (flags.length == 5)
-		return(va_arg(args, intmax_t));
+		return (va_arg(args, intmax_t));
 	else if (flags.length == 6)
-		return(va_arg(args, size_t));
+		return (va_arg(args, size_t));
 	return (0);
 }

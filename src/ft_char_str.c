@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 18:11:21 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 00:06:36 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:06:09 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		ft_percent(va_list args, const char *format, t_numbers *n)
 	chars->str[0] = '%';
 	ft_flag_app(flags, chars);
 	ft_str_to_buf(chars, 1, n);
+	free(chars);
 	return (form + 1);
 }
 
@@ -42,6 +43,7 @@ int		ft_character(va_list args, const char *format, t_numbers *n)
 		chars->str[0] = va_arg(args, int);
 	ft_flag_app(flags, chars);
 	ft_str_to_buf(chars, 1, n);
+	free(chars);
 	return (form + 1);
 }
 
@@ -56,7 +58,7 @@ int		ft_string(va_list args, const char *format, t_numbers *n)
 	i = -1;
 	flags = ft_flags(format, 2, args, &form);
 	if (flags.length == 4)
-		return(ft_wide_str(args, form, flags, n));
+		return (ft_wide_str(args, form, flags, n));
 	else
 	{
 		chars = ft_chars_malloc();
@@ -69,5 +71,6 @@ int		ft_string(va_list args, const char *format, t_numbers *n)
 	else
 		chars->tmp = chars->str;
 	ft_str_to_buf(chars, 2, n);
+	free(chars);
 	return (form + 1);
 }

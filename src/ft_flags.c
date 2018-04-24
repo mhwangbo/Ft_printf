@@ -6,11 +6,30 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 19:03:23 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 14:31:01 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:21:29 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void		ft_flags_app_s(t_flag fl, t_chars *chars, int *f)
+{
+	if (fl.hash == 1 && fl.spec == 4)
+	{
+		if (fl.spec == 4 && fl.base == 16)
+		{
+			chars->front[*f] = '0';
+			*f += 1;
+			chars->front[*f] = 'x';
+			*f += 1;
+		}
+		else if (fl.spec == 4)
+		{
+			chars->front[*f] = '0';
+			*f += 1;
+		}
+	}
+}
 
 void		ft_flag_app(t_flag fl, t_chars *chars)
 {
@@ -32,10 +51,7 @@ void		ft_flag_app(t_flag fl, t_chars *chars)
 		ft_plus_a(fl, chars, &len);
 	while (fl.width > len)
 		ft_width_a(&fl, chars, &b, &f);
-	if (fl.hash == 1 && fl.spec == 4)
-		chars->front[f++] = '0';
-	if (fl.hash == 1 && fl.base == 16)
-		chars->front[f++] = 'x';
+	ft_flags_app_s(fl, chars, &f);
 	if ((fl.plus == 1 && fl.spec == 3) && chars->str[0] != '-')
 		chars->front[f++] = '+';
 	else if (fl.space == 1 && fl.spec == 3 && sign == 0)

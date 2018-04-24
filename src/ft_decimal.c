@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 19:28:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 16:55:00 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:01:28 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_decimal(char *buf, va_list args, int *j, const char *format)
 {
 	t_flag	flags;
-	int		i;
+	long long		i;
 	int		form;
 	t_chars	*chars;
 
@@ -23,7 +23,8 @@ int		ft_decimal(char *buf, va_list args, int *j, const char *format)
 	chars = ft_chars_malloc();
 	flags = ft_flags(format, 3, args, &form);
 	i = ft_d_cv(flags, args);
-	chars->str = ft_itoa(ft_d_cv(flags, args));
+	printf("INPUT: %lld\n", i);
+	chars->str = ft_itoa(i);
 	ft_flag_app(flags, chars);
 	ft_str_to_buf(chars, buf, &j, 3);
 	return (form + 1);

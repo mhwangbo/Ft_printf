@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 20:39:50 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 21:55:43 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int		ft_unsigned_s(const char *format)
 	int		i;
 	int		base;
 
-	i = -1;
-	base = 0;
+	i = 0;
+	base = 10;
 	while (!(ft_strchr("oOuUxX", format[i])))
 		i++;
 	if (format[i] == 'o' || format[i] == 'O')

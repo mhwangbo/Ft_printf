@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/04/23 21:28:54 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/04/23 21:36:32 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,25 +27,25 @@ FILES = ft_printf.c\
 		ft_unsigned.c\
 		ft_wide_char.c
 
-LIBFILES = ft_itoa.c\
-		   ft_memalloc.c\
-		   ft_strjoin.c\
-		   ft_strdup.c\
-		   ft_strlen.c\
+LIBFILES = ft_atoi.c\
 		   ft_bzero.c\
-		   ft_strchr.c\
-		   ft_atoi.c\
-		   ft_uitoa_base.c\
-		   ft_putstr.c\
 		   ft_integerlen.c\
-		   ft_memset.c\
-		   ft_strnew.c\
 		   ft_iswhite.c\
-		   ft_putchar.c\
+		   ft_itoa.c\
+		   ft_itoa_base.c\
+		   ft_llinterlen.c\
 		   ft_llitoa_base.c\
-		   ft_llinterlen.c
+		   ft_memalloc.c\
+		   ft_memset.c\
+		   ft_putchar.c\
+		   ft_putstr.c\
+		   ft_strchr.c\
+		   ft_strdup.c\
+		   ft_strjoin.c\
+		   ft_strlen.c\
+		   ft_uitoa_base.c\
+		   ft_strnew.c
 
-.PHONY = all clean fclean re
 
 PRINTFSRCS = $(addprefix src/, $(FILES))
 LIBSRCS = $(addprefix src/libft/, $(LIBFILES))
@@ -71,3 +71,5 @@ fclean: clean
 	@rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY = all clean fclean re

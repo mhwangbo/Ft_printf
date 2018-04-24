@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 23:45:17 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 23:57:38 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
 				n->i = 0;
 			}
 		}
-			if (format[n->i] != '%')
+			if (format[n->i] != '%' && format[n->i] != '\0')
 			{
 				n->return_i += write(1, &format[n->i], 1);
 				n->i += 1;

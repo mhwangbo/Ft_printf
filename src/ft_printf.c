@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 17:27:47 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 18:54:05 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@
 ** 3 = unsigned octal, unsigned decimal, unsigned hexadecimal (x & X)
 */
 
-int		ft_printf_send(char *buf, va_list args, t_numbers *n, const char *format)
+int		ft_printf_send(va_list args, t_numbers *n, const char *format)
 {
 	if (n->spec == 0)
-		return (ft_character(buf, args, &n->j, format));
+		return (ft_character(args, format));
 	else if (n->spec == 1)
-		return (ft_string(buf, args, &n->j, format));
+		return (ft_string(args, format));
 	else if (n->spec == 2)
-		return (ft_decimal(buf, args, &n->j, format));
+		return (ft_decimal(args, format));
 	else if (n->spec == 3)
-		return (ft_unsigned(buf, args, &n->j, format));
+		return (ft_unsigned(args, format));
 	else if (n->spec == 4)
-		return (ft_pointer(buf, args, &n->j, format));
+		return (ft_pointer(args, format));
 	return (-1);
 }
 
@@ -51,7 +51,7 @@ int		ft_vsprintf_s(const char *format, int i)
 }
 
 
-int		ft_vsprintf(char *buf, const char *format, va_list args, t_numbers n)
+int		ft_vsprintf(const char *format, va_list args, t_numbers n)
 {
 	ft_bzero(&n, sizeof(t_numbers));
 	while (format[n.i] != '\0')
@@ -65,17 +65,16 @@ int		ft_vsprintf(char *buf, const char *format, va_list args, t_numbers n)
 			{
 				n.spec = ft_vsprintf_s(format, n.i);
 				format += n.k;
-				n.i = ft_printf_send(buf, args, &n, format);
+				n.i = ft_printf_send(args, &n, format);
 				format += n.i;
 				n.i = 0;
 			}
 			else if (format[n.i++] == '%')
-				buf[n.j++] = '%';
+				write(1, "%", 1);
 		}
 		if (format[n.i] != '%')
-			buf[n.j++] = format[n.i++];
+			ft_putchar(format[n.i++]);
 	}
-	buf[n.j] = '\0';
 	return (0);
 }
 
@@ -83,17 +82,13 @@ int		ft_printf(const char *format, ...)
 {
 	va_list		args;
 	int			i;
-	char		*buf;
 	int			k;
 	t_numbers	n;
 
 	k = -1;
 	ft_bzero(&n, sizeof(t_numbers));
-	buf = ft_memalloc(256);
 	va_start(args, format);
-	i = ft_vsprintf(buf, format, args, n);
+	i = ft_vsprintf(format, args, n);
 	va_end(args);
-	ft_putstr(buf);
-	free(buf);
 	return (i);
 }

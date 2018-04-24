@@ -6,25 +6,23 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 19:28:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 17:02:57 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 18:45:26 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_decimal(char *buf, va_list args, int *j, const char *format)
+int		ft_decimal(va_list args, const char *format)
 {
 	t_flag	flags;
-	long long		i;
 	int		form;
 	t_chars	*chars;
 
 	form = 0;
 	chars = ft_chars_malloc();
 	flags = ft_flags(format, 3, args, &form);
-	i = ft_d_cv(flags, args);
-	chars->str = ft_itoa(i);
+	chars->str = ft_itoa(ft_d_cv(flags, args));
 	ft_flag_app(flags, chars);
-	ft_str_to_buf(chars, buf, &j, 3);
+	ft_str_to_buf(chars, 3);
 	return (form + 1);
 }

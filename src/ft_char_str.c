@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 18:11:21 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 17:20:51 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:21:20 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_character(char *buf, va_list args, int *j, const char *format)
 		chars->str[0] = va_arg(args, long);
 	else
 		chars->str[0] = va_arg(args, int);
-	ft_printf("INPUT: %c\n", chars->str[0]);
+	printf("INPUT: %c\n", chars->str[0]);
 	ft_flag_app(flags, chars);
 	ft_str_to_buf(chars, buf, &j, 1);
 	return (form + 1);
@@ -51,7 +51,7 @@ int		ft_string(char *buf, va_list args, int *j, const char *format)
 	}
 	else
 		chars->str = va_arg(args, char*);
-	ft_printf("INPUT: %s\n", chars->str);
+	printf("INPUT: %s\n", chars->str);
 	ft_flag_app(flags, chars);
 	if (flags.precision > 0)
 		while (++i < flags.precision)

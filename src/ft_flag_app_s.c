@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 16:30:17 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 00:07:43 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 00:27:45 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ void		ft_hash_a(t_flag *flags, t_chars *chars, int *i, int *sign)
 		chars->str = ft_strdup(chars->str + *i);
 	}
 	else if (flags->spec == 3 && flags->space == 1)
+	{
+		if (chars->str[*i] == '-')
+			*sign = 1;
 		flags->width -= 1;
+	}
 }
 
 void		ft_plus_a(t_flag flags, t_chars *chars, int *len)

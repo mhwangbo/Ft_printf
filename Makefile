@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/04/23 21:36:32 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/04/23 23:22:04 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ LIBFILES = ft_atoi.c\
 		   ft_putchar.c\
 		   ft_putstr.c\
 		   ft_strchr.c\
+		   ft_strdel.c\
 		   ft_strdup.c\
 		   ft_strjoin.c\
 		   ft_strlen.c\

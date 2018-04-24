@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:30:37 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 21:07:07 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 23:45:53 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void		ft_putstr_t(char *s, t_numbers *n)
 
 	i = 0;
 	while (s[i] != '\0')
-		ft_putchar(s[i++]);
-	n->return_i = i - 1;
+		n->return_i += write(1, &s[i++], 1);
 }
 
 void		ft_str_to_buf(t_chars *chars, int s, t_numbers *n)

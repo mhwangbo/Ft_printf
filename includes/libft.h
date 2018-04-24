@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 18:17:53 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 19:41:33 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 23:22:47 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void			*ft_memset(void *array, int constant_byte, size_t n);
 void			ft_putchar(char c);
 void			ft_putstr(char const *s);
 char			*ft_strchr(const char *s, int c);
+void			ft_strdel(char **as);
 char			*ft_strdup(const char *s);
 char			*ft_strjoin(char const *s1, char const *s2);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);

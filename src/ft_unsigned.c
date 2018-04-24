@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 17:03:52 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:05:45 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int		ft_unsigned(char *buf, va_list args, int *j, const char *format)
 	chars = ft_chars_malloc();
 	base = ft_unsigned_s(format);
 	i = ft_un_cv(flags, args);
-	printf("INPUT: %llu\n", i);
 	chars->str = ft_llitoa_base(i, base);
+	printf("ZERO: chars->str = %s\n", chars->str);
 	ft_to_capital(chars, format);
 	ft_flag_app(flags, chars);
 	ft_str_to_buf(chars, buf, &j, 4);

@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 22:08:12 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 00:15:29 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ void	ft_to_capital(t_chars *chars, const char *format)
 			if (chars->str[i] >= 'a' && chars->str[i] <= 'z')
 				chars->str[i] -= 32;
 		}
+		i = -1;
+		while (chars->front[++i])
+			if (chars->front[i] >= 'a' && chars->front[i] <= 'z')
+				chars->front[i] -= 32;
 	}
 }
 
@@ -53,23 +57,23 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	t_flag			flags;
 	int				form;
 	t_chars			*chars;
-	int				base;
 	unsigned long long	i;
 
 	form = 0;
 	flags = ft_flags(format, 4, args, &form);
 	chars = ft_chars_malloc();
-	base = ft_unsigned_s(format);
+	flags.base = ft_unsigned_s(format);
 	i = ft_un_cv(flags, args);
 	if (i == 0)
 	{
 		chars->str[0] = '0';
 		flags.o_zero = 1;
+		flags.hash = 0;
 	}
 	else
-		chars->str = ft_llitoa_base(i, base);
-	ft_to_capital(chars, format);
+		chars->str = ft_llitoa_base(i, flags.base);
 	ft_flag_app(flags, chars);
+	ft_to_capital(chars, format);
 	ft_str_to_buf(chars, 4, n);
 	return (form + 1);
 }

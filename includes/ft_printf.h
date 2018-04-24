@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 21:26:27 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 00:16:49 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct	s_flag
 {
 	int			spec;
+	int			base;
 	int			minus;
 	int			zero;
 	int			plus;

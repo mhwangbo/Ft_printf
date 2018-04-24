@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 00:09:52 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 16:54:55 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 00:20:31 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ char	*ft_itoa(long long n)
 	char	*str;
 
 	i = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	len = ft_integerlen(n);
 	str = (char*)malloc(sizeof(char) * (len + 1));
 	if (!str)

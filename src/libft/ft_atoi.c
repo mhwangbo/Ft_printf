@@ -6,43 +6,34 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 22:16:04 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 16:27:34 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 16:28:27 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_whtspace(const char *str, int i)
+int	ft_atoi(const char *s)
 {
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
-			|| str[i] == '\r' || str[i] == '\f')
-		i++;
-	return (i);
-}
-
-int			ft_atoi(const char *s)
-{
-	int		i;
-	int		sign;
-	int		r;
+	int					i;
+	unsigned long long	j;
+	int					sign;
 
 	i = 0;
+	j = 0;
 	sign = 1;
-	r = 0;
-	i = ft_whtspace(s, i);
-	if (s[i] == '-')
-	{
-		if (s[i + 1] == '-' || s[i + 1] == '+')
-			return (0);
+	while (*s && ft_iswhite(s[i]) == 1)
 		i++;
-		sign = -1;
-	}
-	if (s[i] == '+')
-		i++;
-	while ((s[i] != '\0') && (s[i] >= '0') && (s[i] <= '9'))
+	if (s[i] == '-' || s[i] == '+')
 	{
-		r = (r * 10) + (s[i] - '0');
+		if (s[i] == '-')
+			sign = -1;
 		i++;
 	}
-	return (sign * r);
+	while (*s && s[i] >= '0' && s[i] <= '9')
+	{
+		j = ((j * 10) + (s[i++] - '0'));
+		if (i > 19 || j >= 9223372036854775808ULL)
+			return (sign == 1 ? -1 : 0);
+	}
+	return (j * sign);
 }

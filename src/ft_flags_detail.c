@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 13:57:30 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 15:22:19 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 16:43:58 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int		ft_length(const char *format, t_flag *flags, int **i)
 	else if (format[**i] == 'l' || format[**i] == 'C' || format[**i] == 'S' ||
 			format[**i] == 'D' || format[**i] == 'O' || format[**i] == 'U')
 	{
-		if (format[**i + 1] == 'l')
+		if (format[**i + 1] == 'l' || (format[**i] == 'D' &&
+					format[**i - 1] == 'l'))
 			flags->length = 3;
 		else
 			flags->length = 4;

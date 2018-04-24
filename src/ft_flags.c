@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 19:03:23 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 16:09:15 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 16:44:07 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ t_flag		ft_flags(const char *format, int s, va_list args, int *form)
 		else if ((i < 5) && (ft_strchr("hljz", format[*form])))
 			i = ft_length(format, &flags, &form);
 		*form += 1;
-		if (ft_strchr("CSDOU", format[*form]))
-			i = ft_length(format, &flags, &form);
 	}
+	if (ft_strchr("CSDOU", format[*form]))
+		i = ft_length(format, &flags, &form);
 	return (flags);
 }

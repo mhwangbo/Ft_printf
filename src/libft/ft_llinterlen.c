@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 16:31:27 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 16:51:54 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:08:29 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ size_t		ft_llintegerlen(unsigned long long n)
 	l = 0;
 	if (n == 0)
 		return (1);
-	if (n < 0)
-		l++;
 	while (n)
 	{
 		n = n / 10;

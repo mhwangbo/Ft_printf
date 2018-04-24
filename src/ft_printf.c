@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 18:58:19 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 20:40:05 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@
 int		ft_printf_send(va_list args, t_numbers *n, const char *format)
 {
 	if (n->spec == 0)
-		return (ft_character(args, format));
+		return (ft_character(args, format, n));
 	else if (n->spec == 1)
-		return (ft_string(args, format));
+		return (ft_string(args, format, n));
 	else if (n->spec == 2)
-		return (ft_decimal(args, format));
+		return (ft_decimal(args, format, n));
 	else if (n->spec == 3)
-		return (ft_unsigned(args, format));
+		return (ft_unsigned(args, format, n));
 	else if (n->spec == 4)
-		return (ft_pointer(args, format));
+		return (ft_pointer(args, format, n));
 	return (-1);
 }
 
@@ -47,6 +47,8 @@ int		ft_vsprintf_s(const char *format, int i)
 		return (3);
 	else if (format[i] == 'p')
 		return (4);
+	else if (format[i] == '%')
+		return (5);
 	return (-1);
 }
 
@@ -61,7 +63,7 @@ int		ft_vsprintf(const char *format, va_list args, t_numbers n)
 			n.k = n.i++;
 			while (!ft_strchr("sSpdDioOuUxXcC%", format[n.i]))
 				n.i++;
-			if (ft_strchr("sSpdDioOuUxXcC", format[n.i]))
+			if (ft_strchr("sSpdDioOuUxXcC%", format[n.i]))
 			{
 				n.spec = ft_vsprintf_s(format, n.i);
 				format += n.k;
@@ -69,8 +71,6 @@ int		ft_vsprintf(const char *format, va_list args, t_numbers n)
 				format += n.i;
 				n.i = 0;
 			}
-			else if (format[n.i++] == '%')
-				write(1, "%", 1);
 		}
 		if (format[n.i] != '%')
 			ft_putchar(format[n.i++]);

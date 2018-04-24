@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 18:10:05 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 20:16:28 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 20:43:15 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_putwc(wchar_t wc)
 	}
 }
 
-int		ft_wide_char(va_list args, int form, t_flag flags)
+int		ft_wide_char(va_list args, int form, t_flag flags, t_numbers *n)
 {
 	wchar_t	wc;
 	t_chars	*chars;
@@ -50,14 +50,14 @@ int		ft_wide_char(va_list args, int form, t_flag flags)
 	wc = va_arg(args, wchar_t);
 	ft_flag_app(flags, chars);
 	if (chars->front)
-		ft_putstr(chars->front);
+		ft_putstr_t(chars->front, n);
 	ft_putwc(wc);
 	if (chars->back)
-		ft_putstr(chars->back);
+		ft_putstr_t(chars->back, n);
 	return (form + 1);
 }
 
-int		ft_wide_str(va_list args, int form, t_flag flags)
+int		ft_wide_str(va_list args, int form, t_flag flags, t_numbers *n)
 {
 	int		i;
 	wchar_t	*ws;
@@ -68,10 +68,11 @@ int		ft_wide_str(va_list args, int form, t_flag flags)
 	i = -1;
 	ft_flag_app(flags, chars);
 	if (chars->front)
-		ft_putstr(chars->front);
+		ft_putstr_t(chars->front, n);
 	while (ws[++i] != '\0')
 		ft_putwc(ws[i]);
+	n->return_i = i - 1;
 	if (chars->back)
-		ft_putstr(chars->back);
+		ft_putstr_t(chars->back, n);
 	return (form + 1);
 }

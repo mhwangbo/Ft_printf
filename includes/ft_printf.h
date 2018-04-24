@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 20:17:00 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 20:42:57 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct	s_numbers
 	int			j;
 	int			k;
 	int			spec;
+	int			return_i;
 }				t_numbers;
 
 int				ft_printf(const char *format, ...);
@@ -67,22 +68,24 @@ void			ft_plus_a(t_flag flags, t_chars *chars, int *len);
 void			ft_width_a(t_flag *flags, t_chars *chars, int *b, int *f);
 void			ft_precision_a(t_flag *flags, t_chars *chars, int *len);
 
-int				ft_character(va_list args, const char *format);
-int				ft_string(va_list args, const char *format);
-int				ft_decimal(va_list args, const char *format);
-int				ft_unsigned(va_list args, const char *format);
+int				ft_character(va_list args, const char *format, t_numbers *n);
+int				ft_string(va_list args, const char *format, t_numbers *n);
+int				ft_decimal(va_list args, const char *format, t_numbers *n);
+int				ft_unsigned(va_list args, const char *format, t_numbers *n);
 int				ft_unsigned_s(const char *format);
 void			ft_to_capital(t_chars *chars, const char *format);
-int				ft_pointer(va_list args, const char *format);
+int				ft_pointer(va_list args, const char *format, t_numbers *n);
 
-int				ft_wide_char(va_list args, int form, t_flag flags);
+int				ft_wide_char(va_list args, int form, t_flag flags, t_numbers *n);
 void			ft_putwc(wchar_t wc);
 void			ft_putwchar(char c);
-int				ft_wide_str(va_list args, int form, t_flag flags);
+int				ft_wide_str(va_list args, int form, t_flag flags, t_numbers *n);
 
 long long			ft_d_cv(t_flag flags, va_list args);
 unsigned long long	ft_un_cv(t_flag flags, va_list args);
 
-void			ft_str_to_buf(t_chars *chars, int s);
+void				ft_putstr_t(char *s, t_numbers *n);
+
+void			ft_str_to_buf(t_chars *chars, int s, t_numbers *n);
 t_chars			*ft_chars_malloc(void);
 #endif

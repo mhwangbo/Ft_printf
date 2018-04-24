@@ -6,13 +6,13 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 19:36:12 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 18:47:15 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 20:39:20 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_pointer(va_list args, const char *format)
+int		ft_pointer(va_list args, const char *format, t_numbers *n)
 {
 	t_flag		flags;
 	int			form;
@@ -31,6 +31,6 @@ int		ft_pointer(va_list args, const char *format)
 	flags.spec = 5;
 	ft_flag_app(flags, chars);
 	chars->front = ft_strjoin("0x", chars->front);
-	ft_str_to_buf(chars, 1);
+	ft_str_to_buf(chars, 1, n);
 	return (form + 1);
 }

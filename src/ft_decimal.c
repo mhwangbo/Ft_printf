@@ -6,13 +6,13 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 19:28:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 18:45:26 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 20:42:16 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_decimal(va_list args, const char *format)
+int		ft_decimal(va_list args, const char *format, t_numbers *n)
 {
 	t_flag	flags;
 	int		form;
@@ -23,6 +23,6 @@ int		ft_decimal(va_list args, const char *format)
 	flags = ft_flags(format, 3, args, &form);
 	chars->str = ft_itoa(ft_d_cv(flags, args));
 	ft_flag_app(flags, chars);
-	ft_str_to_buf(chars, 3);
+	ft_str_to_buf(chars, 3, n);
 	return (form + 1);
 }

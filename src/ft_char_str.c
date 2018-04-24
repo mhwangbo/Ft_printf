@@ -6,13 +6,13 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 18:11:21 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 20:17:23 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 20:37:03 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_character(va_list args, const char *format)
+int		ft_character(va_list args, const char *format, t_numbers *n)
 {
 	t_chars	*chars;
 	t_flag	flags;
@@ -22,15 +22,15 @@ int		ft_character(va_list args, const char *format)
 	chars = ft_chars_malloc();
 	flags = ft_flags(format, 1, args, &form);
 	if (flags.length == 4)
-		return (ft_wide_char(args, form, flags));
+		return (ft_wide_char(args, form, flags, n));
 	else
 		chars->str[0] = va_arg(args, int);
 	ft_flag_app(flags, chars);
-	ft_str_to_buf(chars, 1);
+	ft_str_to_buf(chars, 1, n);
 	return (form + 1);
 }
 
-int		ft_string(va_list args, const char *format)
+int		ft_string(va_list args, const char *format, t_numbers *n)
 {
 	t_flag	flags;
 	int		form;
@@ -41,7 +41,7 @@ int		ft_string(va_list args, const char *format)
 	i = -1;
 	flags = ft_flags(format, 2, args, &form);
 	if (flags.length == 4)
-		return(ft_wide_str(args, form, flags));
+		return(ft_wide_str(args, form, flags, n));
 	else
 	{
 		chars = ft_chars_malloc();
@@ -53,6 +53,6 @@ int		ft_string(va_list args, const char *format)
 			chars->tmp[i] = chars->str[i];
 	else
 		chars->tmp = chars->str;
-	ft_str_to_buf(chars, 2);
+	ft_str_to_buf(chars, 2, n);
 	return (form + 1);
 }

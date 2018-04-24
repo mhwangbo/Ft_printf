@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 18:10:05 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 20:58:13 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 21:08:55 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ int		ft_wide_char(va_list args, int form, t_flag flags, t_numbers *n)
 	if (chars->front)
 		ft_putstr_t(chars->front, n);
 	ft_putwc(wc);
-	printf("a\n");
 	if (chars->back)
 		ft_putstr_t(chars->back, n);
-	printf("b\n");
 	return (form + 1);
 }
 

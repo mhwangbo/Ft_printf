@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 16:30:17 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 15:01:12 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:11:45 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		ft_precision_a(t_flag *flags, t_chars *chars, int *len)
 
 void		ft_hash_a(t_flag *flags, t_chars *chars, int *i, int *sign)
 {
-	if (flags->spec >= 4 && flags->spec <= 6)
+	if (flags->spec >= 4 && flags->spec <= 6 && flags->o_zero = 0;)
 	{
 		if (chars->str[*i] == '-' || chars->str[*i] == '+')
 		{

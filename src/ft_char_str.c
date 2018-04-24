@@ -6,11 +6,26 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 18:11:21 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 20:37:03 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 21:05:41 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		ft_percent(va_list args, const char *format, t_numbers *n)
+{
+	t_chars	*chars;
+	t_flag	flags;
+	int		form;
+
+	form = 0;
+	chars = ft_chars_malloc();
+	flags = ft_flags(format, 1, args, &form);
+	chars->str[0] = '%';
+	ft_flag_app(flags, chars);
+	ft_str_to_buf(chars, 1, n);
+	return (form + 1);
+}
 
 int		ft_character(va_list args, const char *format, t_numbers *n)
 {

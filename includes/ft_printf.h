@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 20:42:57 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 20:56:11 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct	s_numbers
 
 int				ft_printf(const char *format, ...);
 int				ft_vsprintf(const char *format, va_list args,
-		t_numbers n);
+		t_numbers *n);
 int				ft_vsprintf_s(const char *format, int i);
 int				ft_printf_send(va_list args, t_numbers *n,
 		const char *format);
@@ -75,6 +75,7 @@ int				ft_unsigned(va_list args, const char *format, t_numbers *n);
 int				ft_unsigned_s(const char *format);
 void			ft_to_capital(t_chars *chars, const char *format);
 int				ft_pointer(va_list args, const char *format, t_numbers *n);
+int				ft_percent(va_list args, const char *format, t_numbers *n);
 
 int				ft_wide_char(va_list args, int form, t_flag flags, t_numbers *n);
 void			ft_putwc(wchar_t wc);

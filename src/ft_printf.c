@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 20:44:40 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 21:05:58 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		ft_printf_send(va_list args, t_numbers *n, const char *format)
 		return (ft_unsigned(args, format, n));
 	else if (n->spec == 4)
 		return (ft_pointer(args, format, n));
+	else if (n->spec == 5)
+		return (ft_percent(args, format, n));
 	return (-1);
 }
 
@@ -53,27 +55,31 @@ int		ft_vsprintf_s(const char *format, int i)
 }
 
 
-int		ft_vsprintf(const char *format, va_list args, t_numbers n)
+int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
 {
-	ft_bzero(&n, sizeof(t_numbers));
-	while (format[n.i] != '\0')
+	ft_bzero(n, sizeof(t_numbers));
+	while (format[n->i] != '\0')
 	{
-		if (format[n.i] == '%')
+		if (format[n->i] == '%')
 		{
-			n.k = n.i++;
-			while (!ft_strchr("sSpdDioOuUxXcC%", format[n.i]))
-				n.i++;
-			if (ft_strchr("sSpdDioOuUxXcC%", format[n.i]))
+			n->k = n->i++;
+			while (!ft_strchr("sSpdDioOuUxXcC%", format[n->i]))
+				n->i++;
+			if (ft_strchr("sSpdDioOuUxXcC%", format[n->i]))
 			{
-				n.spec = ft_vsprintf_s(format, n.i);
-				format += n.k;
-				n.i = ft_printf_send(args, &n, format);
-				format += n.i;
-				n.i = 0;
+				n->spec = ft_vsprintf_s(format, n->i);
+				format += n->k;
+				n->i = ft_printf_send(args, n, format);
+				format += n->i;
+				n->i = 0;
+			}
+			if (format[n->i] != '%')
+			{
+				ft_putchar(format[n->i]);
+				n->i += 1;
+				n->return_i += 1;
 			}
 		}
-		if (format[n.i] != '%')
-			ft_putchar(format[n.i++]);
 	}
 	return (0);
 }
@@ -88,7 +94,8 @@ int		ft_printf(const char *format, ...)
 	k = -1;
 	ft_bzero(&n, sizeof(t_numbers));
 	va_start(args, format);
-	i = ft_vsprintf(format, args, n);
+	i = ft_vsprintf(format, args, &n);
 	va_end(args);
+	printf("%d\n", n.return_i);
 	return (n.return_i);
 }

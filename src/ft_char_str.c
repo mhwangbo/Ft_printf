@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 18:11:21 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 17:35:57 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:36:25 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		ft_string(char *buf, va_list args, int *j, const char *format)
 	i = -1;
 	chars = ft_chars_malloc();
 	flags = ft_flags(format, 2, args, &form);
-	printf("INPUT: \n", va_arg(args, char*);
+	printf("INPUT: \n", va_arg(args, char*));
 	if (flags.length == 4)
 	{
 		tmp = va_arg(args, wchar_t*);

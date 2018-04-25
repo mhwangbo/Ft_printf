@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 18:11:21 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/25 14:38:07 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/25 14:51:54 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_percent(va_list args, const char *format, t_numbers *n)
 
 	form = 0;
 	chars = ft_chars_malloc();
-	flags = ft_flags(format, 1, args, &form);
+	flags = ft_flags(format, 4, args, &form);
 	chars->str[0] = '%';
 	ft_flag_app(flags, chars);
 	ft_str_to_buf(chars, 1, n);
@@ -35,7 +35,7 @@ int		ft_character(va_list args, const char *format, t_numbers *n)
 	int		form;
 
 	form = 0;
-	flags = ft_flags(format, 1, args, &form);
+	flags = ft_flags(format, 2, args, &form);
 	if (flags.length == 4)
 		return (ft_wide_char(args, form, flags, n));
 	else
@@ -43,8 +43,8 @@ int		ft_character(va_list args, const char *format, t_numbers *n)
 		chars = ft_chars_malloc();
 		chars->str[0] = va_arg(args, int);
 	}
-//	if (chars->str[0] == '\0' && flags.width == 0)
-//		n->return_i += 1;
+	if (chars->str[0] == '\0' && flags.width == 0)
+		n->return_i += 1;
 	ft_flag_app(flags, chars);
 	ft_str_to_buf(chars, 1, n);
 	ft_chars_free(chars, flags);

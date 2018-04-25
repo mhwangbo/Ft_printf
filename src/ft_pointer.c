@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 19:36:12 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 22:35:02 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 22:47:48 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int		ft_pointer(va_list args, const char *format, t_numbers *n)
 		flags.o_zero = 1;
 		flags.hash = 0;
 	}
-	ft_flag_app(flags, chars);
 	chars->front = ft_strjoin("0x", chars->front);
 	ft_str_to_buf(chars, 1, n);
 	ft_chars_free(chars, flags);

@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 23:33:54 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 23:35:09 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,10 @@ int		ft_printf(const char *format, ...)
 	int		i;
 
 	va_start(arglist, format);
-	printf("format: %s\n", format);
+	printf("FORMAT: %s\n", format);
+	printf("INPUT: ");
 	i = vprintf(format, arglist);
-	printf("%d\n", i);
+	printf("RETURN: %d\n", i);
 	va_end(arglist);
 	return (i);
 }

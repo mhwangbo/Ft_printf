@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 23:38:19 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 23:39:27 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** 2 = signed decimal
 ** 3 = unsigned octal, unsigned decimal, unsigned hexadecimal (x & X)
 */
-/*
+
 int		ft_printf_send(va_list args, t_numbers *n, const char *format)
 {
 	if (n->spec == 0)
@@ -95,18 +95,4 @@ int		ft_printf(const char *format, ...)
 	i = ft_vsprintf(format, args, &n);
 	va_end(args);
 	return (n.return_i);
-}*/
-
-int		ft_printf(const char *format, ...)
-{
-	va_list arglist;
-	int		i;
-
-	va_start(arglist, format);
-	printf("FORMAT: %s\n", format);
-	printf("INPUT: [");
-	i = vprintf(format, arglist);
-	printf("]\nRETURN: %d\n", i);
-	va_end(arglist);
-	return (i);
 }

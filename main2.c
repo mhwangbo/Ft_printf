@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 23:37:08 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/25 14:18:44 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/25 14:37:00 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ int		main(void)
 	r1 = ft_printf("%c\n", '!');
 	r2 = printf("%c\n", '!');
 	ft_printf("r1 [%d] r2[%d]\n", r1, r2);
-
+	ft_printf("\n\n");
+//	r1 = ft_printf("{%S}\n", NULL);
+	r2 = printf("{%S}\n", NULL);
+	write(1, NULL, 1);
+	ft_printf("r1 [%d] r2[%d]\n", r1, r2);
 	return (0);
 }

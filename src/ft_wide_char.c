@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 18:10:05 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 23:45:10 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/25 15:12:34 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ void	ft_putwc(wchar_t wc, t_numbers *n)
 	}
 }
 
+void	ft_wchar_width(t_numbers *n, t_flag flags)
+{
+	while (flags.width-- > 1)
+		n->return_i += (flags.zero == 1 ?
+		write(1, "0", 1) : write(1, " ", 1));
+}
+
 int		ft_wide_char(va_list args, int form, t_flag flags, t_numbers *n)
 {
 	wchar_t	wc;
@@ -48,13 +55,22 @@ int		ft_wide_char(va_list args, int form, t_flag flags, t_numbers *n)
 
 	chars = ft_chars_malloc();
 	wc = va_arg(args, wchar_t);
-	ft_flag_app(flags, chars);
-	if (chars->front)
+	if (flags.minus)
+	{
+		n->return_i += write(1, &wc, 1);
+		ft_wchar_width(n, flags);
+	}
+	else
+	{
+		ft_wchar_width(n, flags);
+		n->return_i += write(1, &c, 1);
+	}
+/*	if (chars->front)
 		ft_putstr_t(chars->front, n);
 	ft_putwc(wc, n);
 	if (chars->back)
 		ft_putstr_t(chars->back, n);
-	ft_chars_free(chars, flags);
+	ft_chars_free(chars, flags); */
 	return (form + 1);
 }
 

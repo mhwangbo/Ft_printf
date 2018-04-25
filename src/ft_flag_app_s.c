@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 16:30:17 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 16:10:31 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 18:01:40 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,17 @@ void		ft_width_a(t_flag *flags, t_chars *chars, int *b, int *f)
 		*f += 1;
 	}
 	flags->width -= 1;
+}
+
+void		ft_width_change(t_flag *flags)
+{
+	if (flags->spec == 4 && flags->base == 16 && flags->hash == 1)
+	{
+		if (flags->zero == 1 && flags->minus == 0)
+			flags->width += 1;
+		else if (flags->zero == 0 && flags->minus == 0)
+			flags->width -= 1;
+		else if (flags->minus == 1)
+			flags->width -= 1;
+	}
 }

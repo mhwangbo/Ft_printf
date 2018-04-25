@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 18:11:21 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 22:43:46 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 23:12:14 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int		ft_character(va_list args, const char *format, t_numbers *n)
 		return (ft_wide_char(args, form, flags, n));
 	else
 		chars->str[0] = va_arg(args, int);
+	if (chars->str[0] == '\0' && flags.width == 0)
+		n->return_i += 1;
 	ft_flag_app(flags, chars);
 	ft_str_to_buf(chars, 1, n);
 	ft_chars_free(chars, flags);

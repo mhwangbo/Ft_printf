@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 22:32:11 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 23:26:24 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int					ft_percent(va_list args, const char *format, t_numbers *n);
 
 int					ft_wide_char(va_list args, int form, t_flag flags,
 		t_numbers *n);
-void				ft_putwc(wchar_t wc);
-void				ft_putwchar(char c);
+void				ft_putwc(wchar_t wc, t_numbers *n);
+void				ft_putwchar(char c, t_numbers *n);
 int					ft_wide_str(va_list args, int form, t_flag flags,
 		t_numbers *n);
 

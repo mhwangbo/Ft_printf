@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 23:39:27 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/25 14:21:50 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
 			if (ft_strchr("sSpdDioOuUxXcC%", format[n->i]))
 			{
 				n->spec = ft_vsprintf_s(format, n->i);
+				if (n->spec == -1)
+					return (-1);
 				format += n->k;
 				n->i = ft_printf_send(args, n, format);
 				format += n->i;
@@ -93,6 +95,8 @@ int		ft_printf(const char *format, ...)
 	ft_bzero(&n, sizeof(t_numbers));
 	va_start(args, format);
 	i = ft_vsprintf(format, args, &n);
+	if (i == -1)
+		return (-1);
 	va_end(args);
 	return (n.return_i);
 }

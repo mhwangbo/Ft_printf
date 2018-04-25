@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 18:10:05 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/25 15:13:03 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/25 15:17:35 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ void	ft_wchar_width(t_numbers *n, t_flag flags)
 int		ft_wide_char(va_list args, int form, t_flag flags, t_numbers *n)
 {
 	wchar_t	wc;
-	t_chars	*chars;
 
-	chars = ft_chars_malloc();
 	wc = va_arg(args, wchar_t);
 	if (flags.minus)
 	{
@@ -65,12 +63,6 @@ int		ft_wide_char(va_list args, int form, t_flag flags, t_numbers *n)
 		ft_wchar_width(n, flags);
 		n->return_i += write(1, &wc, 1);
 	}
-/*	if (chars->front)
-		ft_putstr_t(chars->front, n);
-	ft_putwc(wc, n);
-	if (chars->back)
-		ft_putstr_t(chars->back, n);
-	ft_chars_free(chars, flags); */
 	return (form + 1);
 }
 

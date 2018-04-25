@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 16:30:17 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 18:01:40 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 19:21:59 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@ void		ft_precision_a(t_flag *flags, t_chars *chars, int *len)
 	int		i;
 
 	front = ft_memalloc(256);
-	if (flags->precision > 0 && flags->width > 0 && flags->spec == 2)
-		*len = flags->precision;
+	if (flags->pre_e == 1 && flags->width > 0 && flags->spec == 2)
+	{
+		if (flags->precision > *len)
+			flags->precision = *len;
+		else
+			*len = flags->precision;
+	}
 	else if (flags->precision > *len && flags->spec > 2)
 	{
 		i = -1;
@@ -27,6 +32,7 @@ void		ft_precision_a(t_flag *flags, t_chars *chars, int *len)
 			front[i] = '0';
 		chars->str = ft_strjoin(front, chars->str);
 	}
+	ft_width_change(flags);
 }
 
 void		ft_hash_a(t_flag *flags, t_chars *chars, int *i, int *sign)

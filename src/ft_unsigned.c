@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 17:15:51 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 19:17:07 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,18 @@ int		ft_unsigned_s(const char *format)
 	return (base);
 }
 
+void	ft_unsigned_ss(t_flag *flags, t_chars *chars)
+{
+	if (flags->pre_e == 1 && flags->precision == 0)
+		chars->str++;
+	else
+	{
+		chars->str[0] = '0';
+		flags->o_zero = 1;
+		flags->hash = 0;
+	}
+}
+
 int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 {
 	t_flag				flags;
@@ -65,11 +77,7 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	flags.base = ft_unsigned_s(format);
 	i = ft_un_cv(flags, args);
 	if (i == 0)
-	{
-		chars->str[0] = '0';
-		flags.o_zero = 1;
-		flags.hash = 0;
-	}
+		ft_unsigned_ss(&flags, chars);
 	else
 		chars->str = ft_llitoa_base(i, flags.base);
 	ft_flag_app(flags, chars);

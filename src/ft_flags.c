@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 19:03:23 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 17:52:15 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 19:21:53 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void		ft_flags_app_s(t_flag fl, t_chars *chars, int *f)
 {
 	if (fl.hash == 1 && fl.spec == 4)
 	{
-		if (fl.spec == 4 && fl.base == 16 &&fl.zero == 0)
+		if (fl.spec == 4 && fl.base == 16 && fl.zero == 0)
 		{
+			if (fl.pre_e == 1 && fl.precision == 0)
+				return ;
 			chars->front[*f] = '0';
 			*f += 1;
 			chars->front[*f] = 'x';
@@ -25,6 +27,8 @@ void		ft_flags_app_s(t_flag fl, t_chars *chars, int *f)
 		}
 		else if (fl.spec == 4 && fl.base == 16 && fl.zero == 1)
 		{
+			if (fl.pre_e == 1 && fl.precision == 0)
+				return ;
 			chars->front[0] = '0';
 			chars->front[1] = 'x';
 		}
@@ -56,7 +60,6 @@ void		ft_flag_app(t_flag fl, t_chars *chars)
 		ft_plus_a(fl, chars, &len);
 	if ((fl.plus == 1 && fl.spec == 3) && chars->str[0] != '-' && fl.zero == 1)
 		chars->front[f++] = '+';
-	ft_width_change(&fl);
 	while (fl.width > len && fl.width > fl.precision)
 		ft_width_a(&fl, chars, &b, &f);
 	ft_flags_app_s(fl, chars, &f);

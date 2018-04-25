@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 18:11:21 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 16:11:02 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 18:38:00 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		ft_string(va_list args, const char *format, t_numbers *n)
 		chars->str = va_arg(args, char*);
 	}
 	ft_flag_app(flags, chars);
-	if (flags.precision > 0)
+	if (flags.pre_e == 1)
 		while (++i < flags.precision)
 			chars->tmp[i] = chars->str[i];
 	else

@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 17:33:28 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 18:35:51 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_flag
 	int				hash;
 	int				width;
 	int				precision;
+	int				pre_e;
 	int				length;
 	int				o_zero;
 }					t_flag;

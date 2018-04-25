@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 13:57:30 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 17:57:52 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 18:35:55 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int		ft_precision(const char *format, t_flag *flags, va_list args, int **f)
 	int		i;
 
 	precision = ft_memalloc(256);
+	flags->pre_e = 1;
 	i = 0;
 	**f += 1;
 	if (format[**f] == '*')

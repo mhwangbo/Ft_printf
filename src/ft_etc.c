@@ -6,11 +6,21 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:30:37 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 18:24:54 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 22:31:50 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void		ft_chars_free(t_chars *chars, t_flag flags)
+{
+	free(chars->front);
+	free(chars->back);
+	free(chars->str);
+	if (flags.spec == 2 && flags.pre_e == 1)
+		free(chars->tmp);
+	free(chars);
+}
 
 t_chars		*ft_chars_malloc(void)
 {

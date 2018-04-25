@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 18:35:51 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 22:32:11 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ int					ft_precision(const char *format, t_flag *flags,
 int					ft_length(const char *format, t_flag *flags, int **i);
 
 void				ft_flag_app(t_flag flags, t_chars *chars);
+void				ft_flag_app_ss(t_chars *chars, int *f);
 void				ft_hash_a(t_flag *flags, t_chars *chars, int *i, int *sign);
-void				ft_plus_a(t_flag flags, t_chars *chars, int *len);
+void				ft_plus_a(t_flag *flags, t_chars *chars);
 void				ft_width_a(t_flag *flags, t_chars *chars, int *b, int *f);
 void				ft_width_change(t_flag *flags);
 void				ft_precision_a(t_flag *flags, t_chars *chars, int *len);
@@ -96,4 +97,5 @@ void				ft_putstr_t(char *s, t_numbers *n);
 
 void				ft_str_to_buf(t_chars *chars, int s, t_numbers *n);
 t_chars				*ft_chars_malloc(void);
+void				ft_chars_free(t_chars *chars, t_flag flags);
 #endif

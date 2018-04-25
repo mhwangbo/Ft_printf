@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 18:10:05 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/23 23:43:47 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 22:36:27 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int		ft_wide_char(va_list args, int form, t_flag flags, t_numbers *n)
 	ft_putwc(wc);
 	if (chars->back)
 		ft_putstr_t(chars->back, n);
+	ft_chars_free(chars, flags);
 	return (form + 1);
 }
 
@@ -74,5 +75,6 @@ int		ft_wide_str(va_list args, int form, t_flag flags, t_numbers *n)
 	n->return_i = i - 1;
 	if (chars->back)
 		ft_putstr_t(chars->back, n);
+	ft_chars_free(chars, flags);
 	return (form + 1);
 }

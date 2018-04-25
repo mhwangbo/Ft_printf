@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 16:30:17 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 19:21:59 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 22:19:20 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ void		ft_precision_a(t_flag *flags, t_chars *chars, int *len)
 	}
 	else if (flags->precision > *len && flags->spec > 2)
 	{
-		i = -1;
-		while (++i < (flags->precision - *len))
-			front[i] = '0';
+		i = 0;
+		if ((flags->plus == 1 && flags->spec == 3) && flags->zero == 1)
+			ft_flag_app_ss(chars, &i);
+		while (i < (flags->precision - *len))
+			front[i++] = '0';
 		chars->str = ft_strjoin(front, chars->str);
 	}
 	ft_width_change(flags);
@@ -57,12 +59,12 @@ void		ft_hash_a(t_flag *flags, t_chars *chars, int *i, int *sign)
 	}
 }
 
-void		ft_plus_a(t_flag flags, t_chars *chars, int *len)
+void		ft_plus_a(t_flag *flags, t_chars *chars)
 {
 	if (chars->str[0] != '-')
-		*len += 1;
-	else if (flags.spec == 4)
-		*len += 1;
+		flags->width -= 1;
+	else if (flags->spec == 4)
+		flags->width -= 1;
 }
 
 void		ft_width_a(t_flag *flags, t_chars *chars, int *b, int *f)

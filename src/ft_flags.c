@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 19:03:23 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 19:21:53 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/24 22:09:14 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,18 @@ void		ft_flags_app_s(t_flag fl, t_chars *chars, int *f)
 	}
 }
 
+void		ft_flag_app_ss(t_chars *chars, int *f)
+{
+	if (chars->str[0] == '-')
+	{
+		chars->str++;
+		chars->front[*f] = '-';
+	}
+	else
+		chars->front[*f] = '+';
+	*f += 1;
+}
+
 void		ft_flag_app(t_flag fl, t_chars *chars)
 {
 	int		b;
@@ -57,9 +69,9 @@ void		ft_flag_app(t_flag fl, t_chars *chars)
 		ft_hash_a(&fl, chars, &i, &sign);
 	ft_precision_a(&fl, chars, &len);
 	if ((fl.plus == 1 && fl.spec == 3) || (fl.hash == 1 && fl.spec == 4))
-		ft_plus_a(fl, chars, &len);
-	if ((fl.plus == 1 && fl.spec == 3) && chars->str[0] != '-' && fl.zero == 1)
-		chars->front[f++] = '+';
+		ft_plus_a(&fl, chars);
+	if ((fl.plus == 1 && fl.spec == 3) && fl.zero == 1 && fl.precision < len)
+		ft_flag_app_ss(chars, &f);
 	while (fl.width > len && fl.width > fl.precision)
 		ft_width_a(&fl, chars, &b, &f);
 	ft_flags_app_s(fl, chars, &f);

@@ -1,57 +1,72 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_string.c                                        :+:      :+:    :+:   */
+/*   ft_wide_str.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/25 15:38:15 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/25 16:10:06 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/04/25 16:10:54 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/04/25 18:03:05 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_str_put(char *str, int len, t_numbers *n)
+void	ft_wstr_put(wchar_t *str, int len, t_numbers *n)
 {
 	int	i;
-
+	
 	i = -1;
 	while (++i < len)
 		n->return_i += write(1, &str[i], 1);
 }
 
-void	ft_str_width(t_numbers *n, t_flag flags, int len)
+int		ft_wstrlen(const wchar_t *s)
 {
-	while (flags.width-- > len)
-		n->return_i += write(1, " ", 1);
+	int		i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
-int		ft_string(va_list args, const char *format, t_numbers *n)
+wchar_t	*ft_wstrdup(wchar_t *ws)
 {
-	t_flag	flags;
-	int		form;
-	char	*str;
-	int		len;
+	wchar_t		*new;
+	size_t		len;
+	size_t		i;
 
-	form = 0;
-	flags = ft_flags(format, 2, args, &form);
-	if (flags.length == 4)
-		return (ft_wide_str(args, form, flags, n));
-	str = ft_strdup(va_arg(args, char*));
-	len = ft_strlen(str);
+	len = ft_wstrlen(ws);
+	new = (wchar_t*)malloc(sizeof(wchar_t) * len + 1);
+	if (!new)
+		return (NULL);
+	i = -1;
+	while (++i < len)
+		new[i] = ws[i];
+	new[i] = '\0';
+	return (new);
+}
+
+int		ft_wide_str(va_list args, int form, t_flag flags, t_numbers *n)
+{
+	int		len;
+	wchar_t	*ws;
+
+	ws = ft_wstrdup(va_arg(args, wchar_t*));
+	len = ft_wstrlen(ws);
 	if (flags.precision < len && flags.pre_e == 1)
 		len = flags.precision;
 	if (flags.minus)
 	{
-		ft_str_put(str, len, n);
+		ft_wstr_put(ws, len, n);
 		ft_str_width(n, flags, len);
 	}
 	else
 	{
 		ft_str_width(n, flags, len);
-		ft_str_put(str, len, n);
+		ft_wstr_put(ws, len, n);
 	}
-	free(str);
+	free(ws);
 	return (form + 1);
 }

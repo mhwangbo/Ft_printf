@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/04/25 16:03:50 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/04/25 17:54:08 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ FILES = ft_printf.c\
 		ft_pointer.c\
 		ft_unsigned.c\
 		ft_string.c\
+		ft_wide_str.c\
 		ft_wide_char.c
 
 LIBFILES = ft_atoi.c\

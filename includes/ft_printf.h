@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/25 15:35:29 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/25 17:53:57 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ void				ft_precision_a(t_flag *flags, t_chars *chars, int *len);
 int					ft_character(va_list args, const char *format,
 		t_numbers *n);
 void				ft_char_width(t_numbers *n, t_flag flags);
+
 int					ft_string(va_list args, const char *format, t_numbers *n);
+void				ft_str_width(t_numbers *n, t_flag flags, int len);
+
 int					ft_decimal(va_list args, const char *format, t_numbers *n);
 int					ft_unsigned(va_list args, const char *format, t_numbers *n);
 int					ft_unsigned_s(const char *format);

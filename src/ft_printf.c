@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/25 14:45:41 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:29:52 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
 			if (ft_strchr("sSpdDioOuUxXcC%", format[n->i]))
 			{
 				n->spec = ft_vsprintf_s(format, n->i);
-				if (n->spec == -1)
-					return (0);
 				format += n->k;
 				n->i = ft_printf_send(args, n, format);
 				format += n->i;

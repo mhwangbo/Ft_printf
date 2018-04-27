@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 19:28:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 22:34:50 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:25:06 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int		ft_decimal(va_list args, const char *format, t_numbers *n)
 	flags = ft_flags(format, 3, args, &form);
 	i = ft_d_cv(flags, args);
 	chars->str = ft_itoa(i);
+	if (chars->str[0] == '-')
+	{
+		flags.sign = 1;
+		chars->str++;
+	}
 	if (i == 0 && flags.pre_e == 1 && flags.precision == 0)
 		chars->str++;
 	ft_flag_app(flags, chars);

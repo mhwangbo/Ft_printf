@@ -6,11 +6,22 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 15:38:15 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/25 16:10:06 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:21:46 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_str_null(t_numbers *n, t_flag flag)
+{
+	int len;
+
+	len = ((flag.precision <= 0 && flag.pre_e == 0) ? 6 : flag.precision);
+	while (flag.width-- > len)
+		n->return_i += (flag.zero == 1 ?
+		write(1, "0", 1) : write(1, " ", 1));
+	n->return_i += write(1, "(null)", len);
+}
 
 void	ft_str_put(char *str, int len, t_numbers *n)
 {
@@ -27,6 +38,20 @@ void	ft_str_width(t_numbers *n, t_flag flags, int len)
 		n->return_i += write(1, " ", 1);
 }
 
+void	ft_string_s(t_numbers *n, t_flag flags, char *str, int len)
+{
+	if (flags.minus)
+	{
+		ft_str_put(str, len, n);
+		ft_str_width(n, flags, len);
+	}
+	else
+	{
+		ft_str_width(n, flags, len);
+		ft_str_put(str, len, n);
+	}
+}
+
 int		ft_string(va_list args, const char *format, t_numbers *n)
 {
 	t_flag	flags;
@@ -39,19 +64,15 @@ int		ft_string(va_list args, const char *format, t_numbers *n)
 	if (flags.length == 4)
 		return (ft_wide_str(args, form, flags, n));
 	str = ft_strdup(va_arg(args, char*));
+	if (str == NULL)
+	{
+		ft_str_null(n, flags);
+		return (form + 1);
+	}
 	len = ft_strlen(str);
 	if (flags.precision < len && flags.pre_e == 1)
 		len = flags.precision;
-	if (flags.minus)
-	{
-		ft_str_put(str, len, n);
-		ft_str_width(n, flags, len);
-	}
-	else
-	{
-		ft_str_width(n, flags, len);
-		ft_str_put(str, len, n);
-	}
+	ft_string_s(n, flags, str, len);
 	free(str);
 	return (form + 1);
 }

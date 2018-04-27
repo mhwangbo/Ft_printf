@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 16:30:17 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/25 16:00:47 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:25:47 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,40 +28,31 @@ void		ft_precision_a(t_flag *flags, t_chars *chars, int *len)
 	else if (flags->precision > *len && flags->spec > 2)
 	{
 		i = 0;
-		if ((flags->plus == 1 && flags->spec == 3) && flags->zero == 1)
-			ft_flag_app_ss(chars, &i);
 		while (i < (flags->precision - *len))
 			front[i++] = '0';
 		chars->str = ft_strjoin(front, chars->str);
 	}
 	ft_width_change(flags);
+	free(front);
 }
 
-void		ft_hash_a(t_flag *flags, t_chars *chars, int *i, int *sign)
+void		ft_hash_a(t_flag *flags, t_chars *chars, int *i)
 {
 	if (flags->spec >= 4 && flags->spec <= 6 && flags->o_zero == 0)
 	{
-		if (chars->str[*i] == '-' || chars->str[*i] == '+')
-		{
-			if (chars->str[*i] == '-')
-				*sign = 1;
-			chars->str = ft_strdup(chars->str + 1);
-		}
 		while (chars->str[*i] == '0')
 			*i += 1;
 		chars->str = ft_strdup(chars->str + *i);
 	}
 	else if (flags->spec == 3 && flags->space == 1)
-	{
-		if (chars->str[*i] == '-')
-			*sign = 1;
 		flags->width -= 1;
-	}
 }
 
-void		ft_plus_a(t_flag *flags, t_chars *chars)
+void		ft_plus_a(t_flag *flags)
 {
-	if (chars->str[0] != '-')
+	if (flags->spec == 3 && flags->space == 1)
+		flags->width -= 1;
+	else if (flags->spec == 3)
 		flags->width -= 1;
 	else if (flags->spec == 4)
 		flags->width -= 1;
@@ -96,4 +87,7 @@ void		ft_width_change(t_flag *flags)
 		else if (flags->minus == 1)
 			flags->width -= 1;
 	}
+	if (flags->spec == 3 && flags->sign == 1 && flags->zero == 0 &&
+			flags->plus == 0)
+		flags->width -= 1;
 }

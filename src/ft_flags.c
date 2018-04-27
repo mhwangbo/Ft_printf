@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 19:03:23 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/25 15:51:43 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:26:16 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,24 @@ void		ft_flags_app_s(t_flag fl, t_chars *chars, int *f)
 	}
 }
 
-void		ft_flag_app_ss(t_chars *chars, int *f)
+void		ft_flag_app_ss(t_flag *fl, t_chars *chars, int *f)
 {
-	if (chars->str[0] == '-')
+	if ((fl->plus == 1 && fl->spec == 3) && fl->zero == 1)
 	{
-		chars->str++;
-		chars->front[*f] = '-';
+		chars->front[*f] = (fl->sign == 1 ? '-' : '+');
+		*f += 1;
 	}
-	else
-		chars->front[*f] = '+';
-	*f += 1;
+	else if (fl->space == 1 && fl->spec == 3 && fl->zero == 1)
+	{
+		chars->front[*f] = (fl->sign == 1 ? '-' : ' ');
+		*f += 1;
+	}
+	else if (fl->spec == 3 && fl->sign == 1 && fl->zero == 1)
+	{
+		chars->front[*f] = '-';
+		*f += 1;
+		fl->width--;
+	}
 }
 
 void		ft_flag_app(t_flag fl, t_chars *chars)
@@ -57,27 +65,26 @@ void		ft_flag_app(t_flag fl, t_chars *chars)
 	int		b;
 	int		f;
 	int		i;
-	int		sign;
 	int		len;
 
 	b = 0;
 	f = 0;
 	i = 0;
-	sign = 0;
 	len = ft_strlen(chars->str);
 	if (fl.hash == 0)
-		ft_hash_a(&fl, chars, &i, &sign);
+		ft_hash_a(&fl, chars, &i);
 	ft_precision_a(&fl, chars, &len);
 	if ((fl.plus == 1 && fl.spec == 3) || (fl.hash == 1 && fl.spec == 4))
-		ft_plus_a(&fl, chars);
-	if ((fl.plus == 1 && fl.spec == 3) && fl.zero == 1 && fl.precision < len)
-		ft_flag_app_ss(chars, &f);
+		ft_plus_a(&fl);
+	ft_flag_app_ss(&fl, chars, &f);
 	while (fl.width > len && fl.width > fl.precision)
 		ft_width_a(&fl, chars, &b, &f);
 	ft_flags_app_s(fl, chars, &f);
-	if ((fl.plus == 1 && fl.spec == 3) && chars->str[0] != '-' && fl.zero == 0)
-		chars->front[f++] = '+';
-	else if (fl.space == 1 && fl.spec == 3 && sign == 0)
+	if ((fl.plus == 1 && fl.spec == 3) && fl.zero == 0)
+		chars->front[f++] = (fl.sign == 1 ? '-' : '+');
+	else if (fl.spec == 3 && fl.zero == 0 && fl.sign == 1)
+		chars->front[f++] = '-';
+	else if (fl.space == 1 && fl.spec == 3 && fl.zero == 0 && fl.sign == 0)
 		chars->front[f++] = ' ';
 }
 

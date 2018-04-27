@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 16:10:54 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/25 18:03:05 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/25 18:06:02 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_wstr_put(wchar_t *str, int len, t_numbers *n)
 {
 	int	i;
-	
+
 	i = -1;
 	while (++i < len)
 		n->return_i += write(1, &str[i], 1);

@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/04/25 17:54:08 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/04/25 18:09:32 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS += -Wall -Wextra -Werror
 CFLAGS += -I includes/
 
 FILES = ft_printf.c\
-		ft_char_str.c\
+		ft_character.c\
 		ft_decimal.c\
 		ft_etc.c\
 		ft_flag_app_s.c\

@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 19:06:19 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/24 16:54:20 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:33:23 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ char	*ft_llitoa_base(unsigned long long n, int base)
 	}
 	while (*str == '0')
 		str++;
+	free(aba);
 	return (str);
 }

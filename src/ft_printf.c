@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/26 20:15:23 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/27 17:42:04 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,8 @@ int		ft_printf(const char *format, ...)
 {
 	va_list		args;
 	int			i;
-	int			k;
 	t_numbers	n;
 
-	k = -1;
 	ft_bzero(&n, sizeof(t_numbers));
 	va_start(args, format);
 	i = ft_vsprintf(format, args, &n);

@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/04/25 18:09:32 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/04/26 19:38:38 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,6 @@ LIBFILES = ft_atoi.c\
 		   ft_strdup.c\
 		   ft_strjoin.c\
 		   ft_strlen.c\
-		   ft_uitoa_base.c\
 		   ft_strnew.c
 
 

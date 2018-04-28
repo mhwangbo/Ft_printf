@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:30:37 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/26 19:27:10 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:54:05 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void		ft_chars_free(t_chars *chars, t_flag flags)
 {
-	free(chars->front);
-	free(chars->back);
-	free(chars->str);
+	ft_strdel(&chars->front);
+	ft_strdel(&chars->back);
+	ft_strdel(&chars->str);
 	if (flags.spec == 2 && flags.pre_e == 1)
-		free(chars->tmp);
+		ft_strdel(&chars->tmp);
 	free(chars);
 }
 

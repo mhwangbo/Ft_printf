@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/29 16:52:28 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:57:19 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,71 +148,69 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	return (form + 1);
 } */
 
-void	ft_un_width(t_numbers *n, t_flag flags, int len)
-{
-	if (flags.precision > len)
-		while (flags.width-- > flags.precision)
-			n->return_i += (flags.zero == 1 ?
-			write(1, "0", 1) : write(1, " ", 1));
-	else
-		while (flags.width-- > len)
-			n->return_i += (flags.zero == 1 ?
-			write(1, "0", 1) : write(1, " ", 1));
-}
-
-void	ft_un_put(char *str, int len, t_numbers *n, t_flag flags)
+void	ft_to_capital(t_chars *chars, const char *format)
 {
 	int		i;
 
-	i = flags.precision;
-	if (flags.zero)
-		ft_d_width(n, flags, len);
-	while (i-- > len)
-		n->return_i += write(1, "0", 1);
-	if (str[0] == '0' && flags.pre_e == 1 && flags.precision == 0)
-		flags.width > 0 ? n->return_i += write(1, " ", 1) : 0;
-	else
-		ft_str_put(str, len, n);
-	if (flags.minus)
-		ft_d_width(n, flags, len);
+	i = 0;
+	while (!ft_strchr("oOuUxX", format[i]))
+		i++;
+	if (format[i] == 'X')
+	{
+		i = -1;
+		while (chars->str[++i])
+		{
+			if (chars->str[i] >= 'a' && chars->str[i] <= 'z')
+				chars->str[i] -= 32;
+		}
+		i = -1;
+		while (chars->front[++i])
+			if (chars->front[i] >= 'a' && chars->front[i] <= 'z')
+				chars->front[i] -= 32;
+	}
 }
 
-void	ft_un_precision(t_flag *flags)
+int		ft_unsigned_s(const char *format)
 {
-	if ((flags->plus || flags->space) && !flags->sign)
-		flags->width -= 1;
-	else if (flags->sign)
-		flags->width -= 1;
-	if (flags->minus)
-		flags->zero = 0;
-	if (flags->zero && flags->precision < flags->width && flags->pre_e)
-		flags->zero = 0;
-}
+	int		i;
+	int		base;
 
+	i = 0;
+	base = 10;
+	while (!(ft_strchr("oOuUxX", format[i])))
+		i++;
+	if (format[i] == 'o' || format[i] == 'O')
+		base = 8;
+	else if (format[i] == 'u' || format[i] == 'U')
+		base = 10;
+	else if (format[i] == 'x' || format[i] == 'X')
+		base = 16;
+	return (base);
+}
 
 int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 {
-	t_flag		flags;
-	int			form;
-	char		*str;
-	long long	i;
-	int			len;
+	t_flag				flags;
+	int					form;
+	t_chars				*chars;
+	unsigned long long	i;
 
 	form = 0;
-	flags = ft_flags(format, 3, args, &form);
+	flags = ft_flags(format, 4, args, &form);
+	chars = ft_chars_malloc();
+	flags.base = ft_unsigned_s(format);
 	i = ft_un_cv(flags, args);
-	str = ft_itoa(i);
-	len = ft_strlen(str);
-	ft_un_precision(&flags);
-	if (flags.minus || flags.zero)
-		flags.sign == 1 ?
-		ft_un_put(str + 1, len, n, flags) : ft_un_put(str, len, n, flags);
-	else
+	if (i == 0)
 	{
-		ft_d_width(n, flags, len);
-		flags.sign == 1 ?
-		ft_un_put(str + 1, len, n, flags) : ft_un_put(str, len, n, flags);
+		chars->str[0] = '0';
+		flags.o_zero = 1;
+		flags.hash = 0;
 	}
-	free(str);
+	else
+		chars->str = ft_llitoa_base(i, flags.base);
+	ft_flag_app(flags, chars);
+	ft_to_capital(chars, format);
+	ft_str_to_buf(chars, 4, n);
+	free(chars);
 	return (form + 1);
 }

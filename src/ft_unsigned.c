@@ -6,12 +6,12 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/29 00:22:58 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:50:12 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+/*
 int		ft_unsigned_s(const char *format, t_flag *flags)
 {
 	int		i;
@@ -143,6 +143,75 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 			ft_un_hash(&flags, n);
 			ft_un_put(str, n, flags);
 		}
+	}
+	free(str);
+	return (form + 1);
+} */
+
+void	ft_d_width(t_numbers *n, t_flag flags, int len)
+{
+	if (flags.precision > len)
+		while (flags.width-- > flags.precision)
+			n->return_i += (flags.zero == 1 ?
+			write(1, "0", 1) : write(1, " ", 1));
+	else
+		while (flags.width-- > len)
+			n->return_i += (flags.zero == 1 ?
+			write(1, "0", 1) : write(1, " ", 1));
+}
+
+void	ft_d_put(char *str, int len, t_numbers *n, t_flag flags)
+{
+	int		i;
+
+	i = flags.precision;
+	if (flags.zero)
+		ft_d_width(n, flags, len);
+	while (i-- > len)
+		n->return_i += write(1, "0", 1);
+	if (str[0] == '0' && flags.pre_e == 1 && flags.precision == 0)
+		flags.width > 0 ? n->return_i += write(1, " ", 1) : 0;
+	else
+		ft_str_put(str, len, n);
+	if (flags.minus)
+		ft_d_width(n, flags, len);
+}
+
+void	ft_d_precision(t_flag *flags)
+{
+	if ((flags->plus || flags->space) && !flags->sign)
+		flags->width -= 1;
+	else if (flags->sign)
+		flags->width -= 1;
+	if (flags->minus)
+		flags->zero = 0;
+	if (flags->zero && flags->precision < flags->width && flags->pre_e)
+		flags->zero = 0;
+}
+
+
+int		ft_unsigned(va_list args, const char *format, t_numbers *n)
+{
+	t_flag		flags;
+	int			form;
+	char		*str;
+	long long	i;
+	int			len;
+
+	form = 0;
+	flags = ft_flags(format, 3, args, &form);
+	i = ft_d_cv(flags, args);
+	str = ft_itoa(i);
+	len = ft_strlen(str);
+	ft_d_precision(&flags);
+	if (flags.minus || flags.zero)
+		flags.sign == 1 ?
+		ft_d_put(str + 1, len, n, flags) : ft_d_put(str, len, n, flags);
+	else
+	{
+		ft_d_width(n, flags, len);
+		flags.sign == 1 ?
+		ft_d_put(str + 1, len, n, flags) : ft_d_put(str, len, n, flags);
 	}
 	free(str);
 	return (form + 1);

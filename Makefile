@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/04/29 00:21:50 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/04/29 00:52:56 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,6 @@ LIBFILES = ft_atoi.c\
 		   ft_strlen.c\
 		   ft_strnew.c\
 		   ft_memdel.c
-
 
 PRINTFSRCS = $(addprefix src/, $(FILES))
 LIBSRCS = $(addprefix src/libft/, $(LIBFILES))

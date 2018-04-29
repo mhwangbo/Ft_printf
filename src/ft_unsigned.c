@@ -6,33 +6,11 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/29 00:14:15 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/29 00:22:58 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*
-void	ft_to_capital(t_chars *chars, const char *format)
-{
-	int		i;
-
-	i = 0;
-	while (!ft_strchr("oOuUxX", format[i]))
-		i++;
-	if (format[i] == 'X')
-	{
-		i = -1;
-		while (chars->str[++i])
-		{
-			if (chars->str[i] >= 'a' && chars->str[i] <= 'z')
-				chars->str[i] -= 32;
-		}
-		i = -1;
-		while (chars->front[++i])
-			if (chars->front[i] >= 'a' && chars->front[i] <= 'z')
-				chars->front[i] -= 32;
-	}
-}*/
 
 int		ft_unsigned_s(const char *format, t_flag *flags)
 {
@@ -169,28 +147,3 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	free(str);
 	return (form + 1);
 }
-
-/*
-int		ft_unsigned(va_list args, const char *format, t_numbers *n)
-{
-	t_flag				flags;
-	int					form;
-	t_chars				*chars;
-	unsigned long long	i;
-
-	form = 0;
-	flags = ft_flags(format, 4, args, &form);
-	chars = ft_chars_malloc();
-	flags.base = ft_unsigned_s(format);
-	i = ft_un_cv(flags, args);
-	if (i == 0)
-		ft_unsigned_ss(&flags, chars);
-	else
-		chars->str = ft_llitoa_base(i, flags.base);
-	ft_flag_app(flags, chars);
-	ft_to_capital(chars, format);
-	ft_str_to_buf(chars, n);
-	ft_chars_free(chars);
-	return (form + 1);
-}
-*/

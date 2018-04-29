@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/29 16:50:12 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:52:28 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	return (form + 1);
 } */
 
-void	ft_d_width(t_numbers *n, t_flag flags, int len)
+void	ft_un_width(t_numbers *n, t_flag flags, int len)
 {
 	if (flags.precision > len)
 		while (flags.width-- > flags.precision)
@@ -160,7 +160,7 @@ void	ft_d_width(t_numbers *n, t_flag flags, int len)
 			write(1, "0", 1) : write(1, " ", 1));
 }
 
-void	ft_d_put(char *str, int len, t_numbers *n, t_flag flags)
+void	ft_un_put(char *str, int len, t_numbers *n, t_flag flags)
 {
 	int		i;
 
@@ -177,7 +177,7 @@ void	ft_d_put(char *str, int len, t_numbers *n, t_flag flags)
 		ft_d_width(n, flags, len);
 }
 
-void	ft_d_precision(t_flag *flags)
+void	ft_un_precision(t_flag *flags)
 {
 	if ((flags->plus || flags->space) && !flags->sign)
 		flags->width -= 1;
@@ -200,18 +200,18 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 
 	form = 0;
 	flags = ft_flags(format, 3, args, &form);
-	i = ft_d_cv(flags, args);
+	i = ft_un_cv(flags, args);
 	str = ft_itoa(i);
 	len = ft_strlen(str);
-	ft_d_precision(&flags);
+	ft_un_precision(&flags);
 	if (flags.minus || flags.zero)
 		flags.sign == 1 ?
-		ft_d_put(str + 1, len, n, flags) : ft_d_put(str, len, n, flags);
+		ft_un_put(str + 1, len, n, flags) : ft_un_put(str, len, n, flags);
 	else
 	{
 		ft_d_width(n, flags, len);
 		flags.sign == 1 ?
-		ft_d_put(str + 1, len, n, flags) : ft_d_put(str, len, n, flags);
+		ft_un_put(str + 1, len, n, flags) : ft_un_put(str, len, n, flags);
 	}
 	free(str);
 	return (form + 1);

@@ -11,7 +11,7 @@ int main(void)
   ft_printf("%lld\n", 9223372036854775807);
   ft_printf("%x\n", 505);
   ft_printf("%X\n", 505);
-  ft_printf("%p\n", &ft_printf);
+//  ft_printf("%p\n", &ft_printf);
   ft_printf("%20.15d\n", 54321);
   ft_printf("%-10d\n", 3);
   ft_printf("% d\n", 3);

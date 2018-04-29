@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/26 18:14:17 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/28 19:48:10 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ unsigned long long	ft_un_cv(t_flag flags, va_list args);
 
 void				ft_putstr_t(char *s, t_numbers *n);
 
-void				ft_str_to_buf(t_chars *chars, int s, t_numbers *n);
+void				ft_str_to_buf(t_chars *chars, t_numbers *n);
 t_chars				*ft_chars_malloc(void);
-void				ft_chars_free(t_chars *chars, t_flag flags);
+void				ft_chars_free(t_chars *chars);
 #endif

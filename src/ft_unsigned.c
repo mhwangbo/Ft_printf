@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/26 20:01:53 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/28 19:43:39 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 		chars->str = ft_llitoa_base(i, flags.base);
 	ft_flag_app(flags, chars);
 	ft_to_capital(chars, format);
-	ft_str_to_buf(chars, 4, n);
-	ft_chars_free(chars, flags);
+	ft_str_to_buf(chars, n);
+	ft_chars_free(chars);
 	return (form + 1);
 }

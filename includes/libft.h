@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 18:17:53 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/26 19:38:50 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/28 20:04:51 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ char			*ft_strnew(size_t size);
 size_t			ft_integerlen(long long n);
 char			*ft_llitoa_base(unsigned long long n, int base);
 size_t			ft_llintegerlen(unsigned long long n, int base);
+void			ft_memdel(void **ap);
 
 #endif

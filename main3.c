@@ -24,7 +24,8 @@ int main(void)
 //  ft_printf("%\n");
 //  ft_printf("%U\n", 4294967295);
 //  ft_printf("%u\n", 4294967295);
-//  ft_printf("%o\n", 40);
+  ft_printf("%#o\n", 40);
+  printf("%#5o\n", 3);
 //  ft_printf("%%#08x\n", 42);
 //  ft_printf("%x\n", 1000);
 //  ft_printf("%#X\n", 1000);

@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/28 19:48:10 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/28 22:56:47 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_flag
 	int				length;
 	int				o_zero;
 	int				sign;
+	int				x;
 }					t_flag;
 
 typedef struct		s_chars
@@ -84,9 +85,10 @@ void				ft_str_width(t_numbers *n, t_flag flags, int len);
 void				ft_str_put(char *str, int lne, t_numbers *n);
 
 int					ft_decimal(va_list args, const char *format, t_numbers *n);
+void				ft_d_width(t_numbers *n, t_flag flags, int len);
 int					ft_unsigned(va_list args, const char *format, t_numbers *n);
-int					ft_unsigned_s(const char *format);
-void				ft_to_capital(t_chars *chars, const char *format);
+//int					ft_unsigned_s(const char *format);
+//void				ft_to_capital(t_chars *chars, const char *format);
 int					ft_pointer(va_list args, const char *format, t_numbers *n);
 int					ft_percent(va_list args, const char *format, t_numbers *n);
 

@@ -6,36 +6,41 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 19:36:12 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/28 19:43:05 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/29 19:52:40 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+void	ft_pointer_put(char *str, int len, t_numbers *n)
+{
+	int		i;
+
+	i = -1;
+	n->return_i += write(1, "0x", 2);
+	while (++i < len)
+		n->return_i += write(1, &str[i], 1);
+}
+
 int		ft_pointer(va_list args, const char *format, t_numbers *n)
 {
-	t_flag		flags;
 	int			form;
-	t_chars		*chars;
 	uintmax_t	int_v;
+	char		*str;
+	int			len;
 
 	form = 0;
-	ft_bzero(&flags, sizeof(t_flag));
-	chars = ft_chars_malloc();
 	while (!ft_strchr("sSpdDioOuUxXcC", format[form]))
 		form++;
 	int_v = (uintmax_t)va_arg(args, void*);
-	chars->str = ft_llitoa_base(int_v, 16);
+	str = ft_llitoa_base(int_v, 16);
 	if (int_v == 0)
 	{
-		chars->str[0] = '0';
-		chars->str[1] = '\0';
-		flags.o_zero = 1;
-		flags.hash = 0;
+		str[0] = '0';
+		str[1] = '\0';
 	}
-	ft_flag_app(flags, chars);
-	chars->front = ft_strjoin("0x", chars->front);
-	ft_str_to_buf(chars, n);
-	ft_chars_free(chars);
+	len = ft_strlen(str);
+	ft_pointer_put(str, len, n);
+	free(str);
 	return (form + 1);
 }

@@ -6,12 +6,12 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/29 19:53:09 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/29 20:05:28 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*
+
 int		ft_unsigned_s(const char *format, t_flag *flags)
 {
 	int		i;
@@ -121,7 +121,7 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	flags.base = ft_unsigned_s(format, &flags);
 	i = ft_un_cv(flags, args);
 	str = ft_llitoa_base(i, flags.base);
-	ft_unsigned_ss(i, &flags, str);
+//	ft_unsigned_ss(i, &flags, str);
 	len = ft_strlen(str);
 	if (flags.minus)
 	{
@@ -146,8 +146,8 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	}
 	free(str);
 	return (form + 1);
-}*/
-
+}
+/*
 void	ft_to_capital(t_chars *chars, const char *format)
 {
 	int		i;
@@ -213,4 +213,4 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	ft_str_to_buf(chars, n);
 	free(chars);
 	return (form + 1);
-}
+} */

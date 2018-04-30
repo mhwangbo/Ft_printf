@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/29 20:06:15 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/29 20:07:07 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,27 +123,27 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	str = ft_llitoa_base(i, flags.base);
 	ft_unsigned_ss(i, &flags, str);
 	len = ft_strlen(str);
-	if (flags.minus)
-	{
+//	if (flags.minus)
+//	{
 //		ft_un_hash(&flags, n);
-		ft_un_put(str, n, flags);
+//		ft_un_put(str, n, flags);
 //		ft_d_width(n, flags, len);
-	}
-	else
-	{
-		if (flags.zero)
-		{
+//	}
+//	else
+//	{
+//		if (flags.zero)
+//		{
 //			ft_un_hash(&flags, n);
 //			ft_d_width(n, flags, len);
-			ft_un_put(str, n, flags);
-		}
-		else
-		{
+//			ft_un_put(str, n, flags);
+//		}
+//		else
+//		{
 //			ft_d_width(n, flags, len);
 //			ft_un_hash(&flags, n);
-			ft_un_put(str, n, flags);
-		}
-	}
+//			ft_un_put(str, n, flags);
+//		}
+//	}
 	free(str);
 	return (form + 1);
 }

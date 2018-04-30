@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/29 20:07:07 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/29 20:09:38 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,30 +120,31 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	flags = ft_flags(format, 4, args, &form);
 	flags.base = ft_unsigned_s(format, &flags);
 	i = ft_un_cv(flags, args);
-	str = ft_llitoa_base(i, flags.base);
+//	str = ft_llitoa_base(i, flags.base);
+	str = ft_strdup("1000");
 	ft_unsigned_ss(i, &flags, str);
 	len = ft_strlen(str);
-//	if (flags.minus)
-//	{
-//		ft_un_hash(&flags, n);
-//		ft_un_put(str, n, flags);
-//		ft_d_width(n, flags, len);
-//	}
-//	else
-//	{
-//		if (flags.zero)
-//		{
-//			ft_un_hash(&flags, n);
-//			ft_d_width(n, flags, len);
-//			ft_un_put(str, n, flags);
-//		}
-//		else
-//		{
-//			ft_d_width(n, flags, len);
-//			ft_un_hash(&flags, n);
-//			ft_un_put(str, n, flags);
-//		}
-//	}
+	if (flags.minus)
+	{
+		ft_un_hash(&flags, n);
+		ft_un_put(str, n, flags);
+		ft_d_width(n, flags, len);
+	}
+	else
+	{
+		if (flags.zero)
+		{
+			ft_un_hash(&flags, n);
+			ft_d_width(n, flags, len);
+			ft_un_put(str, n, flags);
+		}
+		else
+		{
+			ft_d_width(n, flags, len);
+			ft_un_hash(&flags, n);
+			ft_un_put(str, n, flags);
+		}
+	}
 	free(str);
 	return (form + 1);
 }

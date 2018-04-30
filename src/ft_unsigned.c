@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/29 20:09:38 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/29 21:23:55 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ void	ft_un_put(char *str, t_numbers *n, t_flag flags)
 	else
 	{
 		j = 0;
-		while (str[j] == '0' && flags.o_zero == 0)
-			j++;
+		if (flags.o_zero == 0)
+			while (str[j] == '0')
+				j++;
 		while (str[j])
 			ft_un_write(str[j++], n, flags);
 	}
@@ -120,8 +121,7 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	flags = ft_flags(format, 4, args, &form);
 	flags.base = ft_unsigned_s(format, &flags);
 	i = ft_un_cv(flags, args);
-//	str = ft_llitoa_base(i, flags.base);
-	str = ft_strdup("1000");
+	str = ft_llitoa_base(i, flags.base);
 	ft_unsigned_ss(i, &flags, str);
 	len = ft_strlen(str);
 	if (flags.minus)
@@ -148,6 +148,7 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	free(str);
 	return (form + 1);
 }
+
 /*
 void	ft_to_capital(t_chars *chars, const char *format)
 {
@@ -214,4 +215,5 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	ft_str_to_buf(chars, n);
 	free(chars);
 	return (form + 1);
-} */
+}
+*/

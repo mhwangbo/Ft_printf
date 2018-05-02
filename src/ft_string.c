@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 15:38:15 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/29 19:45:33 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/01 18:02:15 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_str_null(t_numbers *n, t_flag flag)
 	len = ((flag.precision <= 0 && flag.pre_e == 0) ? 6 : flag.precision);
 	while (flag.width-- > len)
 		n->return_i += (flag.zero == 1 ?
-		write(1, "0", 1) : write(1, " ", 1));
-	n->return_i += write(1, "(null)", len);
+		write(n->fd, "0", 1) : write(n->fd, " ", 1));
+	n->return_i += write(n->fd, "(null)", len);
 }
 
 void	ft_str_put(char *str, int len, t_numbers *n)
@@ -29,13 +29,13 @@ void	ft_str_put(char *str, int len, t_numbers *n)
 
 	i = -1;
 	while (++i < len)
-		n->return_i += write(1, &str[i], 1);
+		n->return_i += write(n->fd, &str[i], 1);
 }
 
 void	ft_str_width(t_numbers *n, t_flag flags, int len)
 {
 	while (flags.width-- > len)
-		n->return_i += write(1, " ", 1);
+		n->return_i += write(n->fd, " ", 1);
 }
 
 void	ft_string_s(t_numbers *n, t_flag flags, char *str, int len)

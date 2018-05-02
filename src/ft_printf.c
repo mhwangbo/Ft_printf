@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/29 19:13:28 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/01 17:45:09 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 ** 0 = int converted to unsigned char
 ** 1 = char *
 ** 2 = signed decimal
-** 3 = unsigned octal, unsigned decimal, unsigned hexadecimal (x & X)
+** 3 = unsigned octal (o), unsigned decimal (u), unsigned hexadecimal (x & X), 
+**	unsigned binary (b)
+** 4 = pointer
+** 5 = percent
+** 6 = change fd
 */
 
 int		ft_printf_send(va_list args, t_numbers *n, const char *format)
@@ -33,6 +37,13 @@ int		ft_printf_send(va_list args, t_numbers *n, const char *format)
 		return (ft_pointer(args, format, n));
 	else if (n->spec == 5)
 		return (ft_percent(args, format, n));
+	else if (n->spec == 6)
+	{
+		n->fd = va_arg(args, int);
+		return (1);
+	}
+	else if (n->spec == 7)
+		return(ft_non_print(args, format, n));
 	return (-1);
 }
 
@@ -45,26 +56,32 @@ int		ft_vsprintf_s(const char *format, int i)
 	else if (format[i] == 'd' || format[i] == 'D' || format[i] == 'i')
 		return (2);
 	else if (format[i] == 'o' || format[i] == 'O' || format[i] == 'u' ||
-			format[i] == 'U' || format[i] == 'x' || format[i] == 'X')
+			format[i] == 'U' || format[i] == 'x' || format[i] == 'X' ||
+			format[i] == 'b')
 		return (3);
 	else if (format[i] == 'p')
 		return (4);
 	else if (format[i] == '%')
 		return (5);
+	else if (format[i] == 'w')
+		return (6);
+	else if (format[i] == 'r')
+		return (7);
 	return (-1);
 }
 
 int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
 {
 	ft_bzero(n, sizeof(t_numbers));
+	n->fd = 1;
 	while (format[n->i] != '\0')
 	{
 		if (format[n->i] == '%')
 		{
 			n->k = n->i++;
-			while (!ft_strchr("sSpdDioOuUxXcC%", format[n->i]))
+			while (!ft_strchr("sSpdDioOuUxXcCbwr%", format[n->i]))
 				n->i++;
-			if (ft_strchr("sSpdDioOuUxXcC%", format[n->i]))
+			if (ft_strchr("sSpdDioOuUxXcCbrw%", format[n->i]))
 			{
 				n->spec = ft_vsprintf_s(format, n->i);
 				format += n->k;
@@ -75,7 +92,7 @@ int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
 		}
 		if (format[n->i] != '%' && format[n->i] != '\0')
 		{
-			n->return_i += write(1, &format[n->i], 1);
+			n->return_i += write(n->fd, &format[n->i], 1);
 			n->i += 1;
 		}
 	}

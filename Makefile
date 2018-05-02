@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/04/29 19:46:03 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/05/01 18:02:40 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,10 @@ FILES = ft_printf.c\
 		ft_character.c\
 		ft_decimal.c\
 		ft_etc.c\
-		ft_flag_app_s.c\
 		ft_flags.c\
 		ft_flags_detail.c\
 		ft_length.c\
+		ft_non_print.c\
 		ft_pointer.c\
 		ft_unsigned.c\
 		ft_string.c\

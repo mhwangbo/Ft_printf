@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 19:36:12 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/29 19:52:40 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/01 17:33:51 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ft_pointer_put(char *str, int len, t_numbers *n)
 	int		i;
 
 	i = -1;
-	n->return_i += write(1, "0x", 2);
+	n->return_i += write(n->fd, "0x", 2);
 	while (++i < len)
-		n->return_i += write(1, &str[i], 1);
+		n->return_i += write(n->fd, &str[i], 1);
 }
 
 int		ft_pointer(va_list args, const char *format, t_numbers *n)

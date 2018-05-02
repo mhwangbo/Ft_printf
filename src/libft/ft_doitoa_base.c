@@ -6,14 +6,14 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 19:06:19 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/30 21:35:41 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/04/30 21:14:48 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-void	ft_llitoa_base_s(char *aba)
+void	ft_doitoa_base_s(char *aba)
 {
 	int		i;
 	char	tmp;
@@ -27,7 +27,7 @@ void	ft_llitoa_base_s(char *aba)
 		aba[i++] = tmp++;
 }
 
-char	*ft_llitoa_base(unsigned long long n, int base)
+char	*ft_doitoa_base(long double n, int base)
 {
 	size_t	i;
 	size_t	len;
@@ -37,7 +37,7 @@ char	*ft_llitoa_base(unsigned long long n, int base)
 	aba = ft_memalloc(37);
 	ft_llitoa_base_s(aba);
 	i = 0;
-	len = ft_llintegerlen(n, base);
+	len = ft_dointegerlen(n, base);
 	str = ft_memalloc(len + 1);
 	while (i < len)
 	{

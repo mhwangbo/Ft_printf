@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 18:11:21 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/28 20:52:54 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/01 17:27:32 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_char_width(t_numbers *n, t_flag flags)
 {
 	while (flags.width-- > 1)
 		n->return_i += (flags.zero == 1 ?
-		write(1, "0", 1) : write(1, " ", 1));
+		write(n->fd, "0", 1) : write(n->fd, " ", 1));
 }
 
 int		ft_percent(va_list args, const char *format, t_numbers *n)
@@ -30,13 +30,13 @@ int		ft_percent(va_list args, const char *format, t_numbers *n)
 	percent = '%';
 	if (flags.minus)
 	{
-		n->return_i += write(1, &percent, 1);
+		n->return_i += write(n->fd, &percent, 1);
 		ft_char_width(n, flags);
 	}
 	else
 	{
 		ft_char_width(n, flags);
-		n->return_i += write(1, &percent, 1);
+		n->return_i += write(n->fd, &percent, 1);
 	}
 	return (form + 1);
 }
@@ -54,13 +54,13 @@ int		ft_character(va_list args, const char *format, t_numbers *n)
 	c = va_arg(args, int);
 	if (flags.minus)
 	{
-		n->return_i += write(1, &c, 1);
+		n->return_i += write(n->fd, &c, 1);
 		ft_char_width(n, flags);
 	}
 	else
 	{
 		ft_char_width(n, flags);
-		n->return_i += write(1, &c, 1);
+		n->return_i += write(n->fd, &c, 1);
 	}
 	return (form + 1);
 }

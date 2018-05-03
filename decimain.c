@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 21:40:49 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/02 20:06:59 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/02 23:57:18 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,12 @@ int		main(void)
 	printf(".2f: [%.2f]\n", 319.1314);
 	ft_printf("+f: [%+f]\n", (double)124);
 	printf("+f: [%+f]\n", (double)124);
+	ft_printf("f: [%f]\n", (double)0);
+	printf("f: [%f]\n", (double)0);
+	ft_printf("10f: [%10f]\n", 123.132);
+	printf("10f: [%10f]\n", 123.132);
+	ft_printf("-10.2f: [%-10.2f]\n", 123.132);
+	printf("-10.2f: [%-10.2f]\n", 123.132);
 	return (0);
 }
+

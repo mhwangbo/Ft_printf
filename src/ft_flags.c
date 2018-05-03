@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 19:03:23 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/01 17:49:16 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/02 18:41:52 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_flag		ft_flags(const char *format, int s, va_list args, int *form)
 	flags.spec = s;
 	*form += 1;
 	i = 0;
-	while (!ft_strchr("spdiouxXcCSDOUbwr%", format[*form]))
+	while (!ft_strchr("spdiouxXcCSDOUbwrfF%", format[*form]))
 	{
 		if ((i < 2) && (ft_strchr("#0-+ ", format[*form])))
 			i = ft_flag(format[*form], &flags);

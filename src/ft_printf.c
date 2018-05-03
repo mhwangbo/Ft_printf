@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/01 17:45:09 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/02 18:41:43 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 ** 0 = int converted to unsigned char
 ** 1 = char *
 ** 2 = signed decimal
-** 3 = unsigned octal (o), unsigned decimal (u), unsigned hexadecimal (x & X), 
-**	unsigned binary (b)
+** 3 = unsigned octal (o), unsigned decimal (u),
+** unsigned hexadecimal (x & X), unsigned binary (b)
 ** 4 = pointer
 ** 5 = percent
 ** 6 = change fd
@@ -43,7 +43,9 @@ int		ft_printf_send(va_list args, t_numbers *n, const char *format)
 		return (1);
 	}
 	else if (n->spec == 7)
-		return(ft_non_print(args, format, n));
+		return (ft_non_print(args, format, n));
+	else if (n->spec == 8)
+		return (ft_floating_o(args, format, n));
 	return (-1);
 }
 
@@ -67,7 +69,28 @@ int		ft_vsprintf_s(const char *format, int i)
 		return (6);
 	else if (format[i] == 'r')
 		return (7);
+	else if (format[i] == 'f' || format[i] == 'F')
+		return (8);
 	return (-1);
+}
+
+void	ft_vsprintf_ss(const char *format, t_numbers *n)
+{
+	int	x;
+
+	if (format[n->i] != '%' && format[n->i] != '\0')
+	{
+		ft_color(format + n->i, n, &x);
+		if (x != 0)
+		{
+			n->i += 5;
+		}
+		else
+		{
+			n->return_i += write(n->fd, &format[n->i], 1);
+			n->i += 1;
+		}
+	}
 }
 
 int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
@@ -79,9 +102,9 @@ int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
 		if (format[n->i] == '%')
 		{
 			n->k = n->i++;
-			while (!ft_strchr("sSpdDioOuUxXcCbwr%", format[n->i]))
+			while (!ft_strchr("sSpdDioOuUxXcCbwrfF%", format[n->i]))
 				n->i++;
-			if (ft_strchr("sSpdDioOuUxXcCbrw%", format[n->i]))
+			if (ft_strchr("sSpdDioOuUxXcCbrwfF%", format[n->i]))
 			{
 				n->spec = ft_vsprintf_s(format, n->i);
 				format += n->k;
@@ -90,11 +113,7 @@ int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
 				n->i = 0;
 			}
 		}
-		if (format[n->i] != '%' && format[n->i] != '\0')
-		{
-			n->return_i += write(n->fd, &format[n->i], 1);
-			n->i += 1;
-		}
+		ft_vsprintf_ss(format, n);
 	}
 	return (0);
 }

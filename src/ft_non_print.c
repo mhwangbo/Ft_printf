@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 17:45:18 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/01 18:08:26 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/02 18:30:38 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,10 @@ int		ft_non_print(va_list args, const char *format, t_numbers *n)
 	i = -1;
 	flags = ft_flags(format, 2, args, &form);
 	str = ft_strdup(va_arg(args, char*));
-	while(str[++i])
+	while (str[++i])
 		ft_non_print_one(str[i], n);
 	if (str[i] == '\0')
 		n->return_i += write(n->fd, "[NUL]", 5);
 	free(str);
-	return(form + 1);
+	return (form + 1);
 }

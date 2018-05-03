@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/05/01 18:02:40 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/05/02 18:36:02 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,12 @@ CFLAGS += -I includes/
 
 FILES = ft_printf.c\
 		ft_character.c\
+		ft_color.c\
 		ft_decimal.c\
 		ft_etc.c\
 		ft_flags.c\
 		ft_flags_detail.c\
+		ft_floating_o.c\
 		ft_length.c\
 		ft_non_print.c\
 		ft_pointer.c\
@@ -42,6 +44,8 @@ LIBFILES = ft_atoi.c\
 		   ft_putchar.c\
 		   ft_putstr.c\
 		   ft_strchr.c\
+		   ft_strcmp.c\
+		   ft_strncmp.c\
 		   ft_strdel.c\
 		   ft_strdup.c\
 		   ft_strjoin.c\

@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/01 18:03:56 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/02 20:07:22 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ int					ft_character(va_list args, const char *format,
 		t_numbers *n);
 
 /*
+** ft_color.c
+*/
+void				ft_color(const char *format, t_numbers *n, int *x);
+void				ft_color_one(char *str, t_numbers *n, int *x);
+void				ft_color_two(char *str, t_numbers *n, int *x);
+
+/*
 ** ft_decimal.c
 */
 void				ft_d_width(t_numbers *n, t_flag flags, int len);
@@ -89,6 +96,8 @@ int					ft_flag(const char format, t_flag *flags);
 /*
 ** ft_floating_o.c
 */
+char				*ft_ftoa(double val, t_flag flags);
+int					ft_floating_o(va_list args, const char *format, t_numbers *n);
 
 /*
 ** ft_length.c

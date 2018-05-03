@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   decimain.c                                         :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/25 21:40:49 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/02 20:06:59 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/03/04 22:48:14 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/03/04 22:48:22 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "libft.h"
 
-int		main(void)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	ft_printf("f: [%f]\n", 10.111111);
-	printf("f: [%f]\n", 10.111111);
-	ft_printf(" f: [% f]\n", 1314.9);
-	printf(" f: [% f]\n", 1314.9);
-	ft_printf(".2f: [%.2f]\n", 319.1314);
-	printf(".2f: [%.2f]\n", 319.1314);
-	ft_printf("+f: [%+f]\n", (double)124);
-	printf("+f: [%+f]\n", (double)124);
-	return (0);
+	unsigned int	i;
+	unsigned char	*string1;
+	unsigned char	*string2;
+
+	string1 = (unsigned char*)s1;
+	string2 = (unsigned char*)s2;
+	i = 0;
+	while ((string1[i] != '\0') && (string2[i] != '\0'))
+	{
+		if (string1[i] != string2[i])
+			return (string1[i] - string2[i]);
+		i++;
+	}
+	return (string1[i] - string2[i]);
 }

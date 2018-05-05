@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 21:40:49 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/04 17:34:53 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/04 23:40:58 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 int		main(void)
 {
-	ft_printf("a: [%a]\n", 10.111111);
-	printf("a: [%a] x: [%x] \n", 10.111111, 10);
-	ft_printf(" a: [% a]\n", 1314.9);
-	printf(" a: [% a]\n", 1314.9);
-	ft_printf(".2a: [%.2a]\n", 319.1314);
-	printf(".2a: [%.2a]\n", 319.1314);
-	ft_printf("+a: [%+a]\n", (double)124);
-	printf("+a: [%+a]\n", (double)124);
-	ft_printf("a: [%a]\n", (double)0);
-	printf("a: [%a]\n", (double)0);
-	ft_printf("10a: [%10a]\n", 123.132);
-	printf("10a: [%10a]\n", 123.132);
-	ft_printf("-10.2a: [%-10.2a]\n", 123.132);
-	printf("-10.2a: [%-10.2a]\n", 123.132);
-	ft_printf("-10.2f: [%-10.2f]\n", 123.139);
-	printf("-10.2f: [%-10.2f]\n", 123.139);
+	ft_printf("e: [%e]\n", 10.111111);
+	printf("e: [%a] x: [%x] \n", 10.111111, 10);
+	ft_printf(" e: [% e]\n", 1314.9);
+	printf(" e: [% e]\n", 1314.9);
+	ft_printf(".2e: [%.2e]\n", 319.1314);
+	printf(".2e: [%.2e]\n", 319.1314);
+	ft_printf("+e: [%+e]\n", (double)124);
+	printf("+e: [%+e]\n", (double)124);
+	ft_printf("e: [%e]\n", (double)0);
+	printf("e: [%e]\n", (double)0);
+	ft_printf("10e: [%10e]\n", 123.132);
+	printf("10e: [%10e]\n", 123.132);
+	ft_printf("-10.2e: [%-10.2e]\n", 123.132);
+	printf("-10.2e: [%-10.2e]\n", 123.132);
+	ft_printf("-10.2f: [%-10.2f]\n", 123.444444444445);
+	printf("-10.2f: [%-10.2f]\n", 123.444444445);
 	return (0);
 }
 

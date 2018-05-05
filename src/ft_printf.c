@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/04 15:37:19 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/04 23:27:14 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int		ft_printf_send(va_list args, t_numbers *n, const char *format)
 		return (ft_floating_o(args, format, n));
 	else if (n->spec == 9)
 		return (ft_floating_hex(args, format, n));
+	else if (n->spec == 10)
+		return (ft_floating_e(args, format, n));
 	return (-1);
 }
 
@@ -75,6 +77,8 @@ int		ft_vsprintf_s(const char *format, int i)
 		return (8);
 	else if (format[i] == 'a' || format[i] == 'A')
 		return (9);
+	else if (format[i] == 'e' || format[i] == 'E')
+		return (10);
 	return (-1);
 }
 
@@ -106,9 +110,9 @@ int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
 		if (format[n->i] == '%')
 		{
 			n->k = n->i++;
-			while (!ft_strchr("sSpdDioOuUxXcCbwrfFaA%", format[n->i]))
+			while (!ft_strchr(FT_PREC, format[n->i]))
 				n->i++;
-			if (ft_strchr("sSpdDioOuUxXcCbrwfFaA%", format[n->i]))
+			if (ft_strchr(FT_PREC, format[n->i]))
 			{
 				n->spec = ft_vsprintf_s(format, n->i);
 				format += n->k;

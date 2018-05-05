@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/04 17:09:19 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/04 23:24:28 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include "libft.h"
 # include <stdarg.h>
 # include <stdio.h>
+
+# define FT_PREC "sSpdDioOuUxXcCbrwfFaAeE%"
 
 typedef struct		s_flag
 {
@@ -32,6 +34,7 @@ typedef struct		s_flag
 	int				o_zero;
 	int				sign;
 	int				x;
+	int				e_no;
 }					t_flag;
 
 typedef struct		s_numbers
@@ -108,8 +111,19 @@ void				hex_prec(t_flag *flags, double val, char **str, char type);
 void				get_a_expo(double val, char type, char **str_t);
 
 /*
+** ft_floating_e.c
+*/
+void				ft_e_order(t_flag flags, char *str, int len, t_numbers *n);
+void				ft_ftoa_e_ss(long double *val, t_flag *flags);
+void				ft_ftoa_e_s(int *i, long double *val, int *n_val, char **tmp_t);
+char				*ft_ftoa_e(long double val, t_flag *flags);
+int					ft_floating_e(va_list args, const char *format, t_numbers *n);
+
+/*
 ** ft_floating_o.c
 */
+void				ft_round_up(char **str);
+void				ft_ftoa_s(int *i, long double *val, int *n_val, char **tmp_t);
 char				*ft_ftoa(long double val, t_flag *flags);
 void				ft_f_width(t_numbers *n, t_flag flags, int len);
 int					ft_floating_o(va_list args, const char *format,

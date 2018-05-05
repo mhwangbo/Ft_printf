@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 18:26:02 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/02 18:41:43 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/04 15:37:19 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int		ft_printf_send(va_list args, t_numbers *n, const char *format)
 		return (ft_non_print(args, format, n));
 	else if (n->spec == 8)
 		return (ft_floating_o(args, format, n));
+	else if (n->spec == 9)
+		return (ft_floating_hex(args, format, n));
 	return (-1);
 }
 
@@ -71,6 +73,8 @@ int		ft_vsprintf_s(const char *format, int i)
 		return (7);
 	else if (format[i] == 'f' || format[i] == 'F')
 		return (8);
+	else if (format[i] == 'a' || format[i] == 'A')
+		return (9);
 	return (-1);
 }
 
@@ -102,9 +106,9 @@ int		ft_vsprintf(const char *format, va_list args, t_numbers *n)
 		if (format[n->i] == '%')
 		{
 			n->k = n->i++;
-			while (!ft_strchr("sSpdDioOuUxXcCbwrfF%", format[n->i]))
+			while (!ft_strchr("sSpdDioOuUxXcCbwrfFaA%", format[n->i]))
 				n->i++;
-			if (ft_strchr("sSpdDioOuUxXcCbrwfF%", format[n->i]))
+			if (ft_strchr("sSpdDioOuUxXcCbrwfFaA%", format[n->i]))
 			{
 				n->spec = ft_vsprintf_s(format, n->i);
 				format += n->k;

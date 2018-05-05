@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 18:23:38 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/02 17:40:27 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/03 18:10:44 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,5 @@ void	ft_color(const char *format, t_numbers *n, int *x)
 		str[i] = format[i];
 	str[i] = '\0';
 	ft_color_one(str, n, x);
+	free(str);
 }

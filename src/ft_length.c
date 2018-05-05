@@ -6,11 +6,20 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 00:10:14 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/01 17:32:44 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/03 00:28:45 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+long double				ft_f_cv(t_flag flags, va_list args)
+{
+	if (flags.length == 0)
+		return (va_arg(args, double));
+	else if (flags.length == 4)
+		return (va_arg(args, long double));
+	return (-1);
+}
 
 long long				ft_d_cv(t_flag flags, va_list args)
 {

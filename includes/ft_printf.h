@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/02 23:55:25 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/04 17:09:19 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,33 @@ int					ft_width(const char *format, t_flag *flags,
 int					ft_flag(const char format, t_flag *flags);
 
 /*
+** ft_floating_hex.c
+*/
+int					ft_floating_hex(va_list args, const char *format, t_numbers *n);
+char				*ft_f_weight(char *str, char type);
+char				*ft_ftoa_hex(double val, t_flag *flags, char type);
+void				delete_zero(char *tmp);
+
+/*
+** ft_floating_hex_two.c
+*/
+void				hex_prec(t_flag *flags, double val, char **str, char type);
+void				get_a_expo(double val, char type, char **str_t);
+
+/*
 ** ft_floating_o.c
 */
-char				*ft_ftoa(double val, t_flag *flags);
-int					ft_floating_o(va_list args, const char *format, t_numbers *n);
+char				*ft_ftoa(long double val, t_flag *flags);
+void				ft_f_width(t_numbers *n, t_flag flags, int len);
+int					ft_floating_o(va_list args, const char *format,
+		t_numbers *n);
 
 /*
 ** ft_length.c
 */
 long long			ft_d_cv(t_flag flags, va_list args);
 unsigned long long	ft_un_cv(t_flag flags, va_list args);
+long double			ft_f_cv(t_flag flags, va_list args);
 
 /*
 ** ft_non_print.c

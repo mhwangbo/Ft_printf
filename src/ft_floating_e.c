@@ -6,40 +6,11 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 19:39:55 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/04 17:36:02 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/04 17:27:52 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char	*ft_round_up(char *str, t_flag *flags)
-{
-	int		len;
-	int		i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '.')
-			break;
-		i++;
-	}
-	len = 0;
-	while (str[++i])
-		len++;
-	if (len > flags->precision && flags->pre_e == 1)
-	{
-		len--;
-		i--;
-		while (len > flags->precision)
-		{
-			(str[i] > '4') ? (str[i - 1] += 1) : 0;
-			len--;
-			i--;
-		}
-	}
-	return (str);
-}
 
 char	*ft_ftoa(long double val, t_flag *flags)
 {
@@ -65,10 +36,34 @@ char	*ft_ftoa(long double val, t_flag *flags)
 	}
 	tmp_t[i] = 0;
 	str = ft_strjoin(tmp, tmp_t);
+	ft_round_up(str, flags);
 	free(tmp);
 	free(tmp_t);
 	return (str);
 }
+
+char	*ft_round_up(char *str, t_flag *flags)
+{
+	int		len;
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+		str[i] == '.' ? break : i++;
+	while (str[++i])
+		len++;
+	if (len > flags.precision && flags.pre_e == 1)
+	{
+		len--;
+		while (len > flags.precision)
+		{
+			str[len] > 4 ? (str[len - 1] += 1) :  0;
+			len--;
+		}
+	}
+	return (str);
+}
+
 
 void	ft_f_width(t_numbers *n, t_flag flags, int len)
 {

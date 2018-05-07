@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:56:50 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/06 20:38:36 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/06 21:39:32 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	ft_e_order(t_flag flags, char *str, int len, t_numbers *n)
 
 void	ft_ftoa_e_ss(long double *val, t_flag *flags)
 {
-	long long int	tmp;
+	unsigned long long int	tmp;
 
-	tmp = (long long int)*val;
+	tmp = (unsigned long long int)*val;
 	if (*val == 0)
 		return ;
 	else if (tmp > 9)
@@ -60,7 +60,7 @@ void	ft_ftoa_e_ss(long double *val, t_flag *flags)
 		while (tmp > 9)
 		{
 			*val /= 10;
-			tmp = (long long int)*val;
+			tmp = (unsigned long long int)*val;
 			flags->e_no += 1;
 		}
 	}
@@ -69,7 +69,7 @@ void	ft_ftoa_e_ss(long double *val, t_flag *flags)
 		while (tmp < 1)
 		{
 			*val *= 10;
-			tmp = (long long int)*val;
+			tmp = (unsigned long long int)*val;
 			flags->e_no += 1;
 		}
 	}

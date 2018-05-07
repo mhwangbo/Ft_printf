@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/06 20:27:53 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/06 20:47:02 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,11 @@ int					ft_non_print(va_list args, const char *format,
 void				ft_non_print_one(char c, t_numbers *n);
 void				ft_non_print_two(char c, t_numbers *n);
 void				ft_non_print_three(char c, t_numbers *n);
+
+/*
+** ft_n_save.c
+*/
+int					ft_n_save(va_list args, const char *format, t_numbers *n);
 
 /*
 ** ft_pointer.c

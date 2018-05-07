@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/05/04 23:25:48 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/05/06 20:44:32 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ FILES = ft_printf.c\
 		ft_floating_hex_two.c\
 		ft_floating_o.c\
 		ft_length.c\
+		ft_n_save.c\
 		ft_non_print.c\
 		ft_pointer.c\
 		ft_unsigned.c\

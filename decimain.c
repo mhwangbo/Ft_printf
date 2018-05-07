@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 20:19:09 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/06 21:40:55 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/06 21:56:03 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ int		main(void)
 	ft_printf("GEEKS FOR %s HELlO HELLØ %d %n\n", "HELLO WORLD", 1235146, &d);
 	printf("%d\n", c);
 	ft_printf("\n");
-	printf("%e\n", 2147483647111222333.11111);
-	ft_printf("%e\n", 2147483647111222333.11111);
-	ft_printf("%e\n", 9223372036854775807.11111);
+	ft_printf("%a\n", 10.1010);
+	ft_printf("\n");
+	ft_printf("%A\n", 5165846513213551315351314654.32103);
+	ft_printf("\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:56:50 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/06 21:47:04 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/06 22:34:12 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,19 +142,20 @@ int		ft_floating_e(va_list args, const char *format, t_numbers *n)
 {
 	t_flag		flags;
 	int			form;
-	char		*str;
-	int			len;
+/*	char		*str;
+	int			len; */
 	long double	i;
 
 	form = 0;
 	flags = ft_flags(format, 3, args, &form);
 	(flags.pre_e == 0) ? (flags.precision = 7) : (flags.precision += 1);
 	i = ft_f_cv(flags, args);
-	str = ft_ftoa_e(i, &flags);
+/*	str = ft_ftoa_e(i, &flags);
 	ft_e_no_put(&str, flags, format[form], i);
 	len = (flags.sign == 1 ? (ft_strlen(str) - 1) : ft_strlen(str));
 	ft_d_precision(&flags);
 	ft_e_order(flags, str, len, n);
-	free(str);
+	free(str); */
+	n->return_i += printf("%Le", i);
 	return (form + 1);
 }

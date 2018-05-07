@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 18:21:27 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/06 22:25:52 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/06 22:36:54 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*ft_f_weight(char *str, char type)
 
 int		ft_floating_hex(va_list args, const char *format, t_numbers *n)
 {
-/*	t_flag		flags;
+	t_flag		flags;
 	int			form;
 	char		*str;
 	double		i;
@@ -85,14 +85,6 @@ int		ft_floating_hex(va_list args, const char *format, t_numbers *n)
 		i < 0 ? n->return_i += write(1, "-", 1) : 0;
 		ft_d_put(str, len, n, flags);
 	}
-	free(str); */
-	t_flag		flags;
-	int			form;
-	double		i;
-
-	form = 0;
-	flags = ft_flags(format, 3, args, &form);
-	i = va_arg(args, double);
-	n->return_i += printf("%a", i);
+	free(str);
 	return (form + 1);
 }

@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:56:50 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/05 00:03:10 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/06 20:38:36 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	ft_e_order(t_flag flags, char *str, int len, t_numbers *n)
 
 void	ft_ftoa_e_ss(long double *val, t_flag *flags)
 {
-	int		tmp;
+	long long int	tmp;
 
-	tmp = (int)*val;
+	tmp = (long long int)*val;
 	if (*val == 0)
 		return ;
 	else if (tmp > 9)
@@ -60,7 +60,7 @@ void	ft_ftoa_e_ss(long double *val, t_flag *flags)
 		while (tmp > 9)
 		{
 			*val /= 10;
-			tmp = (int)*val;
+			tmp = (long long int)*val;
 			flags->e_no += 1;
 		}
 	}
@@ -69,8 +69,8 @@ void	ft_ftoa_e_ss(long double *val, t_flag *flags)
 		while (tmp < 1)
 		{
 			*val *= 10;
-			tmp = (int)*val;
-			flags->e_no -= 1;
+			tmp = (long long int)*val;
+			flags->e_no += 1;
 		}
 	}
 }
@@ -110,14 +110,33 @@ char	*ft_ftoa_e(long double val, t_flag *flags)
 	return (str);
 }
 
-void	ft_e_no_put(char **str, t_flag flags, char type)
+void	ft_e_no_put(char **str, t_flag flags, char type, long double i)
 {
 	char	*tmp;
-	char	pre[1];
+	char	pre[3];
+	char	*save;
+	int		len;
 
+	pre[0] = type;
+	pre[2] = 0;
+	i < 0 ? (pre[1] = '-') : (pre[1] = '+');
+	len = ft_integerlen(flags.e_no);
+	(len == 1) ? (len += 1) : (len += 0);
+	tmp = (char*)ft_memalloc(sizeof(char) * (len + 1));
+	tmp[len] = 0;
+	while (0 < len)
+	{
+		tmp[--len] = (flags.e_no % 10) + '0';
+		flags.e_no = flags.e_no / 10;
+	}
+	(len == 1) ? (tmp[0] = '0') : 0;
+	save = ft_strjoin(pre, tmp);
+	free(tmp);
 	tmp = str[0];
-	pre[0] = 
-	str[0] = ft_strjoin(
+	str[0] = ft_strjoin(tmp, save);
+	free(save);
+	free(tmp);
+}
 
 int		ft_floating_e(va_list args, const char *format, t_numbers *n)
 {
@@ -132,7 +151,7 @@ int		ft_floating_e(va_list args, const char *format, t_numbers *n)
 	(flags.pre_e == 0) ? (flags.precision = 7) : (flags.precision += 1);
 	i = ft_f_cv(flags, args);
 	str = ft_ftoa_e(i, &flags);
-	ft_e_no_put(&str, flags, format[form]);
+	ft_e_no_put(&str, flags, format[form], i);
 	len = (flags.sign == 1 ? (ft_strlen(str) - 1) : ft_strlen(str));
 	ft_d_precision(&flags);
 	ft_e_order(flags, str, len, n);

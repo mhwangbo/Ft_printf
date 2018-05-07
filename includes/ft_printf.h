@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/04 23:24:28 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/06 20:27:53 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-# define FT_PREC "sSpdDioOuUxXcCbrwfFaAeE%"
+# define FT_PREC "sSpdDioOuUxXcCbrwfFaAeEn%"
 
 typedef struct		s_flag
 {

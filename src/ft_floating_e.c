@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:56:50 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/06 22:34:12 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 16:14:42 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_e_order(t_flag flags, char *str, int len, t_numbers *n)
 	}
 }
 
-void	ft_ftoa_e_ss(long double *val, t_flag *flags)
+void	ft_ftoa_e_ss(long double *val, t_numbers *n)
 {
 	unsigned long long int	tmp;
 
@@ -61,7 +61,7 @@ void	ft_ftoa_e_ss(long double *val, t_flag *flags)
 		{
 			*val /= 10;
 			tmp = (unsigned long long int)*val;
-			flags->e_no += 1;
+			n->e_no += 1;
 		}
 	}
 	else if (tmp < 1)
@@ -70,7 +70,7 @@ void	ft_ftoa_e_ss(long double *val, t_flag *flags)
 		{
 			*val *= 10;
 			tmp = (unsigned long long int)*val;
-			flags->e_no += 1;
+			n->e_no += 1;
 		}
 	}
 }
@@ -84,7 +84,7 @@ void	ft_ftoa_e_s(int *i, long double *val, int *n_val, char **tmp_t)
 	*i += 1;
 }
 
-char	*ft_ftoa_e(long double val, t_flag *flags)
+char	*ft_ftoa_e(long double val, t_flag *flags, t_numbers *n)
 {
 	int		n_val;
 	int		i;
@@ -95,7 +95,7 @@ char	*ft_ftoa_e(long double val, t_flag *flags)
 	i = 0;
 	val < 0 ? (flags->sign = 1) : 0;
 	val < 0 ? (val *= -1) : 0;
-	ft_ftoa_e_ss(&val, flags);
+	ft_ftoa_e_ss(&val, n);
 	n_val = (int)val;
 	tmp = ft_itoa((flags->sign == 1 ? (n_val * -1) : n_val));
 	tmp_t = ft_memalloc(256);
@@ -110,7 +110,7 @@ char	*ft_ftoa_e(long double val, t_flag *flags)
 	return (str);
 }
 
-void	ft_e_no_put(char **str, t_flag flags, char type, long double i)
+void	ft_e_no_put(char **str, t_numbers *n, char type, long double i)
 {
 	char	*tmp;
 	char	pre[3];
@@ -120,14 +120,14 @@ void	ft_e_no_put(char **str, t_flag flags, char type, long double i)
 	pre[0] = type;
 	pre[2] = 0;
 	i < 0 ? (pre[1] = '-') : (pre[1] = '+');
-	len = ft_integerlen(flags.e_no);
+	len = ft_integerlen(n->e_no);
 	(len == 1) ? (len += 1) : (len += 0);
 	tmp = (char*)ft_memalloc(sizeof(char) * (len + 1));
 	tmp[len] = 0;
 	while (0 < len)
 	{
-		tmp[--len] = (flags.e_no % 10) + '0';
-		flags.e_no = flags.e_no / 10;
+		tmp[--len] = (n->e_no % 10) + '0';
+		n->e_no = n->e_no / 10;
 	}
 	(len == 1) ? (tmp[0] = '0') : 0;
 	save = ft_strjoin(pre, tmp);
@@ -142,20 +142,25 @@ int		ft_floating_e(va_list args, const char *format, t_numbers *n)
 {
 	t_flag		flags;
 	int			form;
-/*	char		*str;
-	int			len; */
+	char		*str;
+	int			len; 
 	long double	i;
 
 	form = 0;
 	flags = ft_flags(format, 3, args, &form);
+	if (format[form] == 'g' || format[form] == 'G')
+		flags.spec = 10;
 	(flags.pre_e == 0) ? (flags.precision = 7) : (flags.precision += 1);
+	(flags.spec == 10) ? (flags.precision -= 1) : 0;
 	i = ft_f_cv(flags, args);
-/*	str = ft_ftoa_e(i, &flags);
-	ft_e_no_put(&str, flags, format[form], i);
+	str = ft_ftoa_e(i, &flags, n);
+	if (format[form] == 'g' || format[form] == 'G')
+		ft_e_no_put(&str, n, format[form] - 2, i);
+	else
+		ft_e_no_put(&str, n, format[form], i);
 	len = (flags.sign == 1 ? (ft_strlen(str) - 1) : ft_strlen(str));
 	ft_d_precision(&flags);
 	ft_e_order(flags, str, len, n);
-	free(str); */
-	n->return_i += printf("%Le", i);
+	free(str);
 	return (form + 1);
 }

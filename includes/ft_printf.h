@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/06 22:34:42 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 16:11:21 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-# define FT_PREC "sSpdDioOuUxXcCbrwfFaAeEn%"
+# define FT_PREC "sSpdDioOuUxXcCbrwfFaAeEngG%"
 
 typedef struct		s_flag
 {
@@ -34,7 +34,6 @@ typedef struct		s_flag
 	int				o_zero;
 	int				sign;
 	int				x;
-	int				e_no;
 }					t_flag;
 
 typedef struct		s_numbers
@@ -45,6 +44,7 @@ typedef struct		s_numbers
 	int				spec;
 	int				return_i;
 	int				fd;
+	int				e_no;
 }					t_numbers;
 
 /*
@@ -97,6 +97,11 @@ int					ft_width(const char *format, t_flag *flags,
 int					ft_flag(const char format, t_flag *flags);
 
 /*
+** ft_floaitng_g.c
+*/
+int					ft_floating_g(va_list args, const char *format, t_numbers *n);
+
+/*
 ** ft_floating_hex.c
 */
 int					ft_floating_hex(va_list args, const char *format, t_numbers *n);
@@ -114,9 +119,9 @@ void				get_a_expo(double val, char type, char **str_t);
 ** ft_floating_e.c
 */
 void				ft_e_order(t_flag flags, char *str, int len, t_numbers *n);
-void				ft_ftoa_e_ss(long double *val, t_flag *flags);
+void				ft_ftoa_e_ss(long double *val, t_numbers *n);
 void				ft_ftoa_e_s(int *i, long double *val, int *n_val, char **tmp_t);
-char				*ft_ftoa_e(long double val, t_flag *flags);
+char				*ft_ftoa_e(long double val, t_flag *flags, t_numbers *n);
 int					ft_floating_e(va_list args, const char *format, t_numbers *n);
 
 /*

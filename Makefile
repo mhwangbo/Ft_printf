@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/05/06 20:44:32 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/05/07 17:25:19 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ FILES = ft_printf.c\
 		ft_flags.c\
 		ft_flags_detail.c\
 		ft_floating_e.c\
+		ft_floating_g.c\
 		ft_floating_hex.c\
 		ft_floating_hex_two.c\
 		ft_floating_o.c\

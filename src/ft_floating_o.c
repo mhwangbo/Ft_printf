@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 19:39:55 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/04 23:18:08 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 16:19:07 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ int		ft_floating_o(va_list args, const char *format, t_numbers *n)
 
 	form = 0;
 	flags = ft_flags(format, 3, args, &form);
+	(format[form] == 'g' || format[form] == 'G') ? flags.spec = 10 : 0;
 	(flags.pre_e == 0) ? (flags.precision = 7) : (flags.precision += 1);
+	(flags.spec == 10) ? (flags.precision = flags.precision - 1 - n->e_no) : 0;
 	i = ft_f_cv(flags, args);
 	str = ft_ftoa(i, &flags);
 	len = (flags.sign == 1 ? (ft_strlen(str) - 1) : ft_strlen(str));

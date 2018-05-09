@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 19:39:55 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/08 17:31:52 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 17:50:00 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,17 @@ void	ft_round_up(char **str)
 		str[0][len] = '0';
 		str[0][len - 1] += 1;
 	}
+}
+
+void	ft_del_zero_o(char *str)
+{
+	int		len;
+
+	len = ft_strlen(str);
+	while (str[--len] != '.' && str[len] == '0')
+		str[len] = 0;
+	if (str[len] == '.')
+		str[len] = 0;
 }
 
 void	ft_ftoa_s(int *i, long double *val, long int *n_val, char **tmp_t)
@@ -56,6 +67,7 @@ char	*ft_ftoa(long double val, t_flag *flags)
 	tmp_t[i] = 0;
 	str = ft_strjoin(tmp, tmp_t);
 	ft_round_up(&str);
+	(flags->spec == 10) ? ft_del_zero_o(str) : 0;
 	free(tmp);
 	free(tmp_t);
 	return (str);

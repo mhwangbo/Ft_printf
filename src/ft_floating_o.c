@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 19:39:55 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/08 17:01:21 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 17:15:19 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	ft_round_up(char **str)
 	len--;
 	(str[0][len] > '4') ? (str[0][len - 1] += 1) : 0;
 	str[0][len] = '\0';
+	while (str[0][--len] == ':')
+	{
+		str[0][len] = '0';
+		str[0][len - 1] += 1;
+	}
 }
 
 void	ft_ftoa_s(int *i, long double *val, int *n_val, char **tmp_t)

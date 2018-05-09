@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:56:50 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/08 17:38:34 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 17:52:31 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_ftoa_e_ss(long double *val, t_numbers *n)
 {
 	unsigned long long int	tmp;
 
+	n->e_no = 0;
 	tmp = (unsigned long long int)*val;
 	if (*val == 0)
 		return ;

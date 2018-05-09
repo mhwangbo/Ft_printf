@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/08 16:11:21 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 17:31:33 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int					ft_floating_e(va_list args, const char *format, t_numbers *n);
 ** ft_floating_o.c
 */
 void				ft_round_up(char **str);
-void				ft_ftoa_s(int *i, long double *val, int *n_val, char **tmp_t);
+void				ft_ftoa_s(int *i, long double *val, long int *n_val, char **tmp_t);
 char				*ft_ftoa(long double val, t_flag *flags);
 void				ft_f_width(t_numbers *n, t_flag flags, int len);
 int					ft_floating_o(va_list args, const char *format,

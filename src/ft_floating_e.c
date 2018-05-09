@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:56:50 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/08 17:04:25 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 17:32:24 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,17 @@ void	ft_ftoa_e_s(int *i, long double *val, int *n_val, char **tmp_t)
 
 char	*ft_ftoa_e(long double val, t_flag *flags, t_numbers *n)
 {
-	int		n_val;
-	int		i;
-	char	*tmp_t;
-	char	*tmp;
-	char	*str;
+	long int	n_val;
+	int			i;
+	char		*tmp_t;
+	char		*tmp;
+	char		*str;
 
 	i = 0;
 	val < 0 ? (flags->sign = 1) : 0;
 	val < 0 ? (val *= -1) : 0;
 	ft_ftoa_e_ss(&val, n);
-	n_val = (int)val;
+	n_val = (long int)val;
 	tmp = ft_itoa((flags->sign == 1 ? (n_val * -1) : n_val));
 	tmp_t = ft_memalloc(256);
 	tmp_t[i++] = '.';

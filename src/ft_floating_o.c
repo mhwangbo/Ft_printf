@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 19:39:55 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/08 17:15:19 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 17:31:52 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,30 @@ void	ft_round_up(char **str)
 	}
 }
 
-void	ft_ftoa_s(int *i, long double *val, int *n_val, char **tmp_t)
+void	ft_ftoa_s(int *i, long double *val, long int *n_val, char **tmp_t)
 {
 	*val *= 10;
 	*n_val *= 10;
-	tmp_t[0][*i] = ((int)*val - *n_val) + '0';
-	*n_val = (int)*val;
+	tmp_t[0][*i] = ((long int)*val - *n_val) + '0';
+	*n_val = (long int)*val;
 	*i += 1;
 }
 
 char	*ft_ftoa(long double val, t_flag *flags)
 {
-	int		n_val;
-	int		i;
-	char	*tmp_t;
-	char	*tmp;
-	char	*str;
+	long int	n_val;
+	int			i;
+	char		*tmp_t;
+	char		*tmp;
+	char		*str;
 
 	i = 0;
 	val < 0 ? (flags->sign = 1) : 0;
 	val < 0 ? (val *= -1) : 0;
-	n_val = (int)val;
+	n_val = (long int)val;
 	tmp = ft_itoa((flags->sign == 1 ? (n_val * -1) : n_val));
 	tmp_t = ft_memalloc(256);
-	tmp_t[i++] = '.';
+	(flags->precision == 0) ? 0 : (tmp_t[i++] = '.');
 	while (flags->precision--)
 		ft_ftoa_s(&i, &val, &n_val, &tmp_t);
 	tmp_t[i] = 0;

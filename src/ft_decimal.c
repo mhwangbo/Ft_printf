@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 19:28:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/09 13:40:20 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:53:02 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	ft_d_precision(t_flag *flags)
 		flags->zero = 0;
 }
 
-void	ft_d_sign(int *len, long long i, t_flag *flags)
+void	ft_d_sign(int *len, char *str, t_flag *flags)
 {
-	if (i < 0)
+	if (str[0] == '-')
 	{
 		flags->sign = 1;
 		*len -= 1;
@@ -81,7 +81,7 @@ int		ft_decimal(va_list args, const char *format, t_numbers *n)
 	i = ft_d_cv(flags, args);
 	str = ft_itoa(i, flags);
 	len = ft_strlen(str);
-	ft_d_sign(&len, i, &flags);
+	ft_d_sign(&len, str, &flags);
 	ft_d_precision(&flags);
 	if (flags.minus || flags.zero)
 		flags.sign == 1 ?

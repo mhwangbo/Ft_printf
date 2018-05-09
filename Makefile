@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/05/09 13:45:18 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/05/09 15:00:29 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ FILES = ft_printf.c\
 		ft_floating_o_two.c\
 		ft_itoa.c\
 		ft_length.c\
+		ft_llitoa_base.c\
 		ft_n_save.c\
 		ft_non_print.c\
 		ft_pointer.c\
@@ -46,7 +47,6 @@ LIBFILES = ft_atoi.c\
 		   ft_iswhite.c\
 		   ft_itoa_base.c\
 		   ft_llinterlen.c\
-		   ft_llitoa_base.c\
 		   ft_memalloc.c\
 		   ft_memset.c\
 		   ft_putchar.c\

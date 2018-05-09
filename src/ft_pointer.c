@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 19:36:12 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/01 17:33:51 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:06:25 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ int		ft_pointer(va_list args, const char *format, t_numbers *n)
 	uintmax_t	int_v;
 	char		*str;
 	int			len;
+	t_flag		flags;
 
 	form = 0;
 	while (!ft_strchr("sSpdDioOuUxXcC", format[form]))
 		form++;
+	ft_bzero(&flags, sizeof(t_flag));
 	int_v = (uintmax_t)va_arg(args, void*);
-	str = ft_llitoa_base(int_v, 16);
+	str = ft_llitoa_base(int_v, 16, flags);
 	if (int_v == 0)
 	{
 		str[0] = '0';

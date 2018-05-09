@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 14:28:57 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/04 16:47:31 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:06:44 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		ft_unsigned(va_list args, const char *format, t_numbers *n)
 	flags = ft_flags(format, 4, args, &form);
 	flags.base = ft_unsigned_s(format, &flags);
 	i = ft_un_cv(flags, args);
-	str = ft_llitoa_base(i, flags.base);
+	str = ft_llitoa_base(i, flags.base, flags);
 	ft_unsigned_ss(i, &flags, str);
 	len = ft_strlen(str);
 	ft_unsigned_order(&flags, n, str, len);

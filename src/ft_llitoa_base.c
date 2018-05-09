@@ -6,12 +6,11 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 19:06:19 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/04/30 21:35:41 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:05:47 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
 void	ft_llitoa_base_s(char *aba)
 {
@@ -27,7 +26,24 @@ void	ft_llitoa_base_s(char *aba)
 		aba[i++] = tmp++;
 }
 
-char	*ft_llitoa_base(unsigned long long n, int base)
+void	ft_llitoa_s(unsigned long long *n, t_flag flags)
+{
+	unsigned short int	a;
+	unsigned char		b;
+
+	if (flags.length == 2)
+	{
+		a = (unsigned short int)*n;
+		*n = (unsigned long long)a;
+	}
+	else if (flags.length == 1)
+	{
+		b = (unsigned char)*n;
+		*n = (unsigned long long)b;
+	}
+}
+
+char	*ft_llitoa_base(unsigned long long n, int base, t_flag flags)
 {
 	size_t	i;
 	size_t	len;
@@ -35,6 +51,7 @@ char	*ft_llitoa_base(unsigned long long n, int base)
 	char	*aba;
 
 	aba = ft_memalloc(37);
+	ft_llitoa_s(&n, flags);
 	ft_llitoa_base_s(aba);
 	i = 0;
 	len = ft_llintegerlen(n, base);

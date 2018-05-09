@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/09 13:47:42 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:03:55 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void				ft_color_two(char *str, t_numbers *n, int *x);
 void				ft_d_width(t_numbers *n, t_flag flags, int len);
 void				ft_d_put(char *str, int len, t_numbers *n, t_flag flags);
 void				ft_d_precision(t_flag *flags);
-void				ft_d_sign(int *len, long long i, t_flag *flags);
+void				ft_d_sign(int *len, char *str, t_flag *flags);
 int					ft_decimal(va_list args, const char *format, t_numbers *n);
 
 /*
@@ -234,4 +234,8 @@ int					ft_wide_str(va_list args, int form, t_flag flags,
 ** modified ft_itoa.c
 */
 char				*ft_itoa(long long n, t_flag flags);
+void				ft_itoa_s(long long *n, t_flag flags);
+void				ft_llitoa_base_s(char *aba);
+void				ft_llitoa_s(unsigned long long *n, t_flag flags);
+char				*ft_llitoa_base(unsigned long long n, int base, t_flag flags);
 #endif

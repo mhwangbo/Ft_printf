@@ -6,7 +6,7 @@
 #    By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 14:47:29 by mhwangbo          #+#    #+#              #
-#    Updated: 2018/05/07 17:25:19 by mhwangbo         ###   ########.fr        #
+#    Updated: 2018/05/08 18:09:29 by mhwangbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ CFLAGS += -Wall -Wextra -Werror
 CFLAGS += -I includes/
 
 FILES = ft_printf.c\
+		ft_printf_two.c\
 		ft_character.c\
 		ft_color.c\
 		ft_decimal.c\
@@ -23,10 +24,12 @@ FILES = ft_printf.c\
 		ft_flags.c\
 		ft_flags_detail.c\
 		ft_floating_e.c\
+		ft_floating_e_two.c\
 		ft_floating_g.c\
 		ft_floating_hex.c\
 		ft_floating_hex_two.c\
 		ft_floating_o.c\
+		ft_floating_o_two.c\
 		ft_length.c\
 		ft_n_save.c\
 		ft_non_print.c\

@@ -6,75 +6,11 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:56:50 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/08 17:52:31 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:00:09 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	ft_e_put(char *str, int len, t_numbers *n, t_flag flags)
-{
-	int		i;
-
-	i = flags.precision;
-	if (flags.sign)
-		n->return_i += write(n->fd, "-", 1);
-	else if (flags.plus && !flags.sign)
-		n->return_i += write(n->fd, "+", 1);
-	else if (flags.space && !flags.sign)
-		n->return_i += write(n->fd, " ", 1);
-	if (flags.zero)
-		ft_d_width(n, flags, len);
-	while (i-- > len)
-		n->return_i += write(n->fd, "0", 1);
-	if (str[0] == '0' && flags.pre_e == 1 && flags.precision == 0)
-		flags.width > 0 ? n->return_i += write(n->fd, " ", 1) : 0;
-	else
-		ft_str_put(str, len, n);
-	if (flags.minus)
-		ft_d_width(n, flags, len);
-}
-
-void	ft_e_order(t_flag flags, char *str, int len, t_numbers *n)
-{
-	if (flags.minus || flags.zero)
-		flags.sign == 1 ?
-		ft_d_put(str + 1, len, n, flags) : ft_d_put(str, len, n, flags);
-	else
-	{
-		ft_f_width(n, flags, len);
-		flags.sign == 1 ?
-		ft_d_put(str + 1, len, n, flags) : ft_d_put(str, len, n, flags);
-	}
-}
-
-void	ft_ftoa_e_ss(long double *val, t_numbers *n)
-{
-	unsigned long long int	tmp;
-
-	n->e_no = 0;
-	tmp = (unsigned long long int)*val;
-	if (*val == 0)
-		return ;
-	else if (tmp > 9)
-	{
-		while (tmp > 9)
-		{
-			*val /= 10;
-			tmp = (unsigned long long int)*val;
-			n->e_no += 1;
-		}
-	}
-	else if (tmp < 1)
-	{
-		while (tmp < 1)
-		{
-			*val *= 10;
-			tmp = (unsigned long long int)*val;
-			n->e_no -= 1;
-		}
-	}
-}
 
 void	ft_ftoa_e_s(int *i, long double *val, int *n_val, char **tmp_t)
 {
@@ -120,8 +56,8 @@ void	ft_e_no_put(char **str, t_numbers *n, char type)
 
 	pre[0] = type;
 	pre[2] = 0;
-	n->e_no < 0 ? (pre[1] = '-') : (pre[1] = '+');
-	n->e_no < 0 ? (n->e_no *= -1) : 0;
+	pre[1] = (n->e_no < 0 ? '-' : '+');
+	(n->e_no < 0) ? (n->e_no *= -1) : 0;
 	len = ft_integerlen(n->e_no);
 	(len == 1) ? (len += 1) : 0;
 	tmp = (char*)ft_memalloc(sizeof(char) * (len + 1));
@@ -145,7 +81,7 @@ int		ft_floating_e(va_list args, const char *format, t_numbers *n)
 	t_flag		flags;
 	int			form;
 	char		*str;
-	int			len; 
+	int			len;
 	long double	i;
 
 	form = 0;

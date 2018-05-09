@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/08 17:31:33 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:11:29 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,14 @@ int					ft_flag(const char format, t_flag *flags);
 /*
 ** ft_floaitng_g.c
 */
-int					ft_floating_g(va_list args, const char *format, t_numbers *n);
+int					ft_floating_g(va_list args, const char *format,
+		t_numbers *n);
 
 /*
 ** ft_floating_hex.c
 */
-int					ft_floating_hex(va_list args, const char *format, t_numbers *n);
+int					ft_floating_hex(va_list args, const char *format,
+		t_numbers *n);
 char				*ft_f_weight(char *str, char type);
 char				*ft_ftoa_hex(double val, t_flag *flags, char type);
 void				delete_zero(char *tmp);
@@ -118,22 +120,37 @@ void				get_a_expo(double val, char type, char **str_t);
 /*
 ** ft_floating_e.c
 */
+void				ft_ftoa_e_s(int *i, long double *val, int *n_val,
+		char **tmp_t);
+char				*ft_ftoa_e(long double val, t_flag *flags, t_numbers *n);
+void				ft_e_no_put(char **str, t_numbers *n, char type);
+int					ft_floating_e(va_list args, const char *format,
+		t_numbers *n);
+
+/*
+** ft_floating_e_two.c
+*/
+void				ft_e_put(char *str, int len, t_numbers *n, t_flag flags);
 void				ft_e_order(t_flag flags, char *str, int len, t_numbers *n);
 void				ft_ftoa_e_ss(long double *val, t_numbers *n);
-void				ft_ftoa_e_s(int *i, long double *val, int *n_val, char **tmp_t);
-char				*ft_ftoa_e(long double val, t_flag *flags, t_numbers *n);
-int					ft_floating_e(va_list args, const char *format, t_numbers *n);
 
 /*
 ** ft_floating_o.c
 */
-void				ft_round_up(char **str);
-void				ft_ftoa_s(int *i, long double *val, long int *n_val, char **tmp_t);
 char				*ft_ftoa(long double val, t_flag *flags);
 void				ft_f_width(t_numbers *n, t_flag flags, int len);
+void				ft_floating_o_order(t_flag flags, char *str,
+		int len, t_numbers *n);
 int					ft_floating_o(va_list args, const char *format,
 		t_numbers *n);
 
+/*
+** ft_floating_o_two.c
+*/
+void				ft_round_up(char **str);
+void				ft_del_zero_o(char *str);
+void				ft_ftoa_s(int *i, long double *val,
+		long int *n_val, char **tmp_t);
 /*
 ** ft_length.c
 */
@@ -164,11 +181,19 @@ int					ft_pointer(va_list args, const char *format, t_numbers *n);
 /*
 ** ft_printf.c
 */
-int					ft_printf_send(va_list args, t_numbers *n,
-		const char *format);
-int					ft_vsprintf_s(const char *format, int i);
+void				ft_vsprintf_ss(const char *format, t_numbers *n);
 int					ft_vsprintf(const char *format, va_list args, t_numbers *n);
 int					ft_printf(const char *format, ...);
+
+/*
+** ft_printf_two.c
+*/
+int					ft_printf_send_two(va_list args, t_numbers *n,
+		const char *format);
+int					ft_printf_send(va_list args, t_numbers *n,
+		const char *format);
+int					ft_vsprintf_s_two(const char *format, int i);
+int					ft_vsprintf_s(const char *format, int i);
 
 /*
 ** ft_string.c

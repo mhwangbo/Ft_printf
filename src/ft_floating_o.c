@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 19:39:55 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/08 16:19:07 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 17:01:21 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,19 @@ void	ft_f_width(t_numbers *n, t_flag flags, int len)
 		write(n->fd, "0", 1) : write(n->fd, " ", 1));
 }
 
+void	ft_floating_o_order(t_flag flags, char *str, int len, t_numbers *n)
+{
+	if (flags.minus || flags.zero)
+		flags.sign == 1 ?
+		ft_d_put(str + 1, len, n, flags) : ft_d_put(str, len, n, flags);
+	else
+	{
+		ft_f_width(n, flags, len);
+		flags.sign == 1 ?
+		ft_d_put(str + 1, len, n, flags) : ft_d_put(str, len, n, flags);
+	}
+}
+
 int		ft_floating_o(va_list args, const char *format, t_numbers *n)
 {
 	t_flag		flags;
@@ -80,15 +93,7 @@ int		ft_floating_o(va_list args, const char *format, t_numbers *n)
 	str = ft_ftoa(i, &flags);
 	len = (flags.sign == 1 ? (ft_strlen(str) - 1) : ft_strlen(str));
 	ft_d_precision(&flags);
-	if (flags.minus || flags.zero)
-		flags.sign == 1 ?
-		ft_d_put(str + 1, len, n, flags) : ft_d_put(str, len, n, flags);
-	else
-	{
-		ft_f_width(n, flags, len);
-		flags.sign == 1 ?
-		ft_d_put(str + 1, len, n, flags) : ft_d_put(str, len, n, flags);
-	}
+	ft_floating_o_order(flags, str, len, n);
 	free(str);
 	return (form + 1);
 }

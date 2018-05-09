@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:56:50 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/08 16:14:42 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/08 17:04:25 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_ftoa_e_ss(long double *val, t_numbers *n)
 		{
 			*val *= 10;
 			tmp = (unsigned long long int)*val;
-			n->e_no += 1;
+			n->e_no -= 1;
 		}
 	}
 }
@@ -110,7 +110,7 @@ char	*ft_ftoa_e(long double val, t_flag *flags, t_numbers *n)
 	return (str);
 }
 
-void	ft_e_no_put(char **str, t_numbers *n, char type, long double i)
+void	ft_e_no_put(char **str, t_numbers *n, char type)
 {
 	char	*tmp;
 	char	pre[3];
@@ -119,9 +119,10 @@ void	ft_e_no_put(char **str, t_numbers *n, char type, long double i)
 
 	pre[0] = type;
 	pre[2] = 0;
-	i < 0 ? (pre[1] = '-') : (pre[1] = '+');
+	n->e_no < 0 ? (pre[1] = '-') : (pre[1] = '+');
+	n->e_no < 0 ? (n->e_no *= -1) : 0;
 	len = ft_integerlen(n->e_no);
-	(len == 1) ? (len += 1) : (len += 0);
+	(len == 1) ? (len += 1) : 0;
 	tmp = (char*)ft_memalloc(sizeof(char) * (len + 1));
 	tmp[len] = 0;
 	while (0 < len)
@@ -155,9 +156,9 @@ int		ft_floating_e(va_list args, const char *format, t_numbers *n)
 	i = ft_f_cv(flags, args);
 	str = ft_ftoa_e(i, &flags, n);
 	if (format[form] == 'g' || format[form] == 'G')
-		ft_e_no_put(&str, n, format[form] - 2, i);
+		ft_e_no_put(&str, n, format[form] - 2);
 	else
-		ft_e_no_put(&str, n, format[form], i);
+		ft_e_no_put(&str, n, format[form]);
 	len = (flags.sign == 1 ? (ft_strlen(str) - 1) : ft_strlen(str));
 	ft_d_precision(&flags);
 	ft_e_order(flags, str, len, n);

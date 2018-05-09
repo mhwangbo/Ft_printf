@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 19:39:55 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/08 18:03:17 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:48:53 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_ftoa(long double val, t_flag *flags)
 	val < 0 ? (flags->sign = 1) : 0;
 	val < 0 ? (val *= -1) : 0;
 	n_val = (long int)val;
-	tmp = ft_itoa((flags->sign == 1 ? (n_val * -1) : n_val));
+	tmp = ft_itoa((flags->sign == 1 ? (n_val * -1) : n_val), *flags);
 	tmp_t = ft_memalloc(256);
 	(flags->precision == 0) ? 0 : (tmp_t[i++] = '.');
 	while (flags->precision--)

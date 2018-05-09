@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 18:21:27 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/07 17:52:53 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:48:39 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_ftoa_hex(double val, t_flag *flags, char type)
 
 	val == 0 ? str = ft_strdup("0") : hex_prec(flags, val, &str, type);
 	val == 0 ? 0 : delete_zero(str);
-	get_a_expo(val, type, &str_t);
+	get_a_expo(val, type, &str_t, *flags);
 	if (str[0] == '\0')
 		r_str = (val == 0 ? ft_strjoin("0", str_t) : ft_strjoin("1", str_t));
 	else

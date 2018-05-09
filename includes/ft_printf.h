@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:49:51 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/08 18:11:29 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:47:42 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void				delete_zero(char *tmp);
 ** ft_floating_hex_two.c
 */
 void				hex_prec(t_flag *flags, double val, char **str, char type);
-void				get_a_expo(double val, char type, char **str_t);
+void				get_a_expo(double val, char type, char **str_t, t_flag flags);
 
 /*
 ** ft_floating_e.c
@@ -229,4 +229,9 @@ int					ft_wstrlen(const wchar_t *s);
 wchar_t				*ft_wstrdup(wchar_t *ws);
 int					ft_wide_str(va_list args, int form, t_flag flags,
 		t_numbers *n);
+
+/*
+** modified ft_itoa.c
+*/
+char				*ft_itoa(long long n, t_flag flags);
 #endif

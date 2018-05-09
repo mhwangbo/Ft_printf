@@ -6,20 +6,37 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 00:09:52 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/06 20:21:43 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:45:03 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-char	*ft_itoa(long long n)
+void	ft_itoa_s(long long *n, t_flag flags)
+{
+	short int	a;
+	signed char	b;
+	if (flags.length == 2)
+	{
+		a = (short)*n;
+		*n = (long long)a;
+	}
+	else if (flags.length == 1)
+	{
+		b = (signed char)*n;
+		*n = (long long)b;
+	}
+}	
+
+char	*ft_itoa(long long n, t_flag flags)
 {
 	size_t	i;
 	size_t	len;
 	char	*str;
 
 	i = 0;
+	ft_itoa_s(&n, flags);
 	len = ft_integerlen(n);
 	str = (char*)malloc(sizeof(char) * (len + 1));
 	if (!str)

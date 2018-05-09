@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 17:06:13 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/06 22:23:59 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:47:46 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	hex_prec(t_flag *flags, double val, char **str, char type)
 	}
 }
 
-void	get_a_expo(double val, char type, char **str_t)
+void	get_a_expo(double val, char type, char **str_t, t_flag flags)
 {
 	char	*tmp;
 	char	pre[3];
@@ -60,7 +60,7 @@ void	get_a_expo(double val, char type, char **str_t)
 			val /= 2;
 		++i;
 	}
-	tmp = ft_itoa(i);
+	tmp = ft_itoa(i, flags);
 	*str_t = ft_strjoin(pre, tmp);
 	free(tmp);
 }

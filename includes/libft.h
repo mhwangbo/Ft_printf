@@ -6,7 +6,7 @@
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 18:17:53 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/03 00:29:37 by mhwangbo         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:44:06 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+# include "ft_printf.h"
 
 typedef struct	s_list
 {
@@ -26,7 +27,6 @@ typedef struct	s_list
 int				ft_atoi(const char *s);
 void			ft_bzero(void *s, size_t n);
 int				ft_iswhite(const char s);
-char			*ft_itoa(long long n);
 char			*ft_itoa_base(long long n, int base);
 void			*ft_memalloc(size_t size);
 void			*ft_memset(void *array, int constant_byte, size_t n);

@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_n_save.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/06 20:27:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/14 19:56:49 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/03/04 22:30:11 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/03/04 22:31:07 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		ft_n_save(va_list args, const char *format, t_numbers *n)
+int	ft_isalpha(int a)
 {
-	t_flag	flags;
-	int		*i;
-	int		form;
-
-	form = 0;
-	flags = ft_flags(format, 7, args, &form);
-	i = va_arg(args, int*);
-	i[0] = n->return_i;
-	return (form + 1);
+	if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z'))
+		return (1);
+	else
+		return (0);
 }

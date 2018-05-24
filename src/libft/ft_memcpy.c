@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_n_save.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/06 20:27:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/14 19:56:49 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/02/19 20:34:01 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/03/04 22:41:35 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		ft_n_save(va_list args, const char *format, t_numbers *n)
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	t_flag	flags;
-	int		*i;
-	int		form;
+	size_t	i;
 
-	form = 0;
-	flags = ft_flags(format, 7, args, &form);
-	i = va_arg(args, int*);
-	i[0] = n->return_i;
-	return (form + 1);
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dst);
 }

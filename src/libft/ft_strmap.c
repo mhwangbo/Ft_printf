@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_n_save.c                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/06 20:27:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/14 19:56:49 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/03/04 22:54:22 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/03/10 13:44:54 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		ft_n_save(va_list args, const char *format, t_numbers *n)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	t_flag	flags;
-	int		*i;
-	int		form;
+	char	*str;
+	int		i;
 
-	form = 0;
-	flags = ft_flags(format, 7, args, &form);
-	i = va_arg(args, int*);
-	i[0] = n->return_i;
-	return (form + 1);
+	i = 0;
+	if (!s || !f)
+		return (NULL);
+	str = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!str)
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		str[i] = f(s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

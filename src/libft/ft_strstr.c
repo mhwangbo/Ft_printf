@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_n_save.c                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/06 20:27:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/14 19:56:49 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/03/04 23:09:41 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/03/05 03:08:04 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		ft_n_save(va_list args, const char *format, t_numbers *n)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	t_flag	flags;
-	int		*i;
-	int		form;
+	int	i;
+	int	j;
+	int	h;
 
-	form = 0;
-	flags = ft_flags(format, 7, args, &form);
-	i = va_arg(args, int*);
-	i[0] = n->return_i;
-	return (form + 1);
+	i = 0;
+	j = 0;
+	if (needle[i] == '\0')
+		return ((char*)&haystack[i]);
+	while (haystack[i] != '\0')
+	{
+		h = 0;
+		while (needle[j + h] == haystack[i + h])
+		{
+			h++;
+			if (needle[j + h] == '\0')
+				return ((char*)&haystack[i]);
+		}
+		i++;
+	}
+	return (NULL);
 }

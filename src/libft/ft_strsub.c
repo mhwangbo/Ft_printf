@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_n_save.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/06 20:27:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/14 19:56:49 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/03/04 23:10:35 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/04/03 23:39:32 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		ft_n_save(va_list args, const char *format, t_numbers *n)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	t_flag	flags;
-	int		*i;
-	int		form;
+	char	*str;
+	size_t	i;
 
-	form = 0;
-	flags = ft_flags(format, 7, args, &form);
-	i = va_arg(args, int*);
-	i[0] = n->return_i;
-	return (form + 1);
+	i = 0;
+	str = (char*)malloc(sizeof(char) * len + 1);
+	if (!s || !str)
+		return (NULL);
+	while (i < len)
+	{
+		str[i] = s[start + i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

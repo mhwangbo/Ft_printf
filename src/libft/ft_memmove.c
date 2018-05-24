@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_n_save.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/06 20:27:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/14 19:56:49 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/02/19 22:56:27 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/03/05 01:52:05 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		ft_n_save(va_list args, const char *format, t_numbers *n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	t_flag	flags;
-	int		*i;
-	int		form;
+	unsigned char	*tmp_src;
+	unsigned char	*tmp_dst;
+	size_t			i;
 
-	form = 0;
-	flags = ft_flags(format, 7, args, &form);
-	i = va_arg(args, int*);
-	i[0] = n->return_i;
-	return (form + 1);
+	i = 0;
+	tmp_src = (unsigned char*)src;
+	tmp_dst = (unsigned char*)dst;
+	if (tmp_src < tmp_dst)
+		while (len)
+		{
+			tmp_dst[len - 1] = tmp_src[len - 1];
+			len--;
+		}
+	else
+		while (i < len)
+		{
+			tmp_dst[i] = tmp_src[i];
+			i++;
+		}
+	return (dst);
 }

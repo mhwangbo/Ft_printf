@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_n_save.c                                        :+:      :+:    :+:   */
+/*   ft_wordcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/06 20:27:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/14 19:56:49 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/02/25 23:42:20 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/03/04 23:13:37 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		ft_n_save(va_list args, const char *format, t_numbers *n)
+int		ft_wordcount(char const *s, char c)
 {
-	t_flag	flags;
-	int		*i;
-	int		form;
+	int i;
+	int j;
 
-	form = 0;
-	flags = ft_flags(format, 7, args, &form);
-	i = va_arg(args, int*);
-	i[0] = n->return_i;
-	return (form + 1);
+	i = 0;
+	j = 0;
+	while (s[i] != '\0')
+	{
+		if ((s[i - 1] == '\0' || s[i - 1] == c) && (s[i] != c))
+			j++;
+		i++;
+	}
+	return (j);
 }

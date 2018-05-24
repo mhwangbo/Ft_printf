@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_n_save.c                                        :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhwangbo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/06 20:27:59 by mhwangbo          #+#    #+#             */
-/*   Updated: 2018/05/14 19:56:49 by mhwangbo         ###   ########.fr       */
+/*   Created: 2018/03/04 22:57:13 by mhwangbo          #+#    #+#             */
+/*   Updated: 2018/03/10 14:07:08 by mhwangbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		ft_n_save(va_list args, const char *format, t_numbers *n)
+int	ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	t_flag	flags;
-	int		*i;
-	int		form;
-
-	form = 0;
-	flags = ft_flags(format, 7, args, &form);
-	i = va_arg(args, int*);
-	i[0] = n->return_i;
-	return (form + 1);
+	if (!s1 && !s2 && n > 0)
+		return (1);
+	if ((!s1 || !s2) && n > 0)
+		return (0);
+	if (n == 0)
+		return (1);
+	if (s1 && s2)
+	{
+		if (ft_strncmp(s1, s2, n) == 0)
+			return (1);
+	}
+	return (0);
 }
